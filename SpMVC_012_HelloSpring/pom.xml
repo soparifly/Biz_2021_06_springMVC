@@ -4,8 +4,8 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.callor</groupId>
-	<artifactId>hello</artifactId>
-	<name>SpMVC_011_Hello</name>
+	<artifactId>spring</artifactId>
+	<name>SpMVC_012_HelloSpring</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<properties>
