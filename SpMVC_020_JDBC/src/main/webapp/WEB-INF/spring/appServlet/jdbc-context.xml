@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/tx https://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+
+	<!-- 주석을 작성할때는 꺽쇠, 느낌표 기호 사용금지 *.context.xml 파일 project 에서 선언한, 사용할 클래스를 
+		객체로 미리 선언하기 위한 설정을 하는 곳 bean Spring container는 여기에 설정된 항목을 보고 서버가 시작될때 클래스를 
+		컴파일 하여 객체로 생성 한 후 보관을 하게된다. java code에서 Class obj= new Class()와 같은 코드를 사용하여 
+		객체를 생성(초기화) 하면 이때 obj가 바로 bean이다 Spring container 는 여기에설정된 항목을 보고 서버가시작될때 
+		클래스를 컴파일하여 객체로 생성한 후 보관을 하게된다. -->
+	<!-- 여기에서는 Spring-jdbc를 사용하여 DBMS연동을 위한 설정 -->
+	<!-- 클래스를 사용하여 객체를 선언 (초기화)하겠다 라는 선언 -->
+	<!-- DriverManagerDataSource dataSource = new DriverManagerSource() -->
+	<!-- java 에서 사용했던 DBContract는 Spring에서는 dataSource라고한  -->
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource"> <!-- 어떤 클래스로 만들지 -->
+		<property name="driverClassName"
+			value="com.mysql.cj.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/mydb" />
+		<property name="username" value="tdUser" />
+		<property name="password" value="tdUser" />
+	</bean>
+	
+	<!-- java Code를 사용하여 DBMS에 SQL을 보내고 결과를 수신하기위한 Helpper Class 클래 
+		JdbcTemplate jdbcTempate 
+		=  new JdbcTemplate(dateSource);
+		jdbcTemplate 클래스를 사용하여 객체를 생성할때는 생성자
+			생성자 method	에 반드시 dataSource를 전달해주어야한다 
+			-->
+	
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+	<constructor-arg ref="dataSource"/>
+	
+	</bean>
+
+
+
+</beans>
+
