@@ -13,20 +13,16 @@
 	<annotation-driven />
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
-	<resources mapping="/static/**" location="/static/" />
+	<resources mapping="/resources/**" location="/resources/" />
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
-	<!--
-	base-packgage에 하위 package를 추가하기
-	  클래스를 스캔하여 bean으로 만들때 
-	base -package를 제한하여 서버 Run이 조금이나마 빨리 진행되도록 하기위한 조치  -->
-	<context:component-scan base-package="com.callor.jdbc.controller" />
-	<context:component-scan base-package="com.callor.jdbc.pesistance" />
-	<context:component-scan base-package="com.callor.jdbc.service" />
+	
+	<context:component-scan base-package="com.soparifly.home" />
+	
 	
 	
 </beans:beans>

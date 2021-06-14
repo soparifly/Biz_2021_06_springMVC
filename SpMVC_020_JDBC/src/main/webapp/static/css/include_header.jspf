@@ -1,0 +1,77 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<c:set var="rootPath" value="${pageContext.request.contextPath}" />
+<style>
+header {
+	background-color: #907fa4;
+	color: white;
+	text-shadow: 1px 1px 1px black;
+	text-align: center;
+	padding: 2rem;
+	/* 1rem은 태그안에 가장 큰 글자의 두배만큼 패딩을 준다는 의미로볼수있 */
+}
+/*  */
+nav#main_nav {
+	background-color: #a58faa;
+	color: white;
+}
+
+nav#main_nav ul {
+	list-style: none;
+	display: flex;
+}
+/* ul li tag를 메뉴 등으로 설정할 경우기본값으로 하면 각 메뉴들이 다닥다닥 붙게되어 보기가싫다
+이때 다음 두가지 방법으로 보기에 좋은 모양을 갖출수 있다
+1.li tag 에 height, width 값을 주어 간격을 적절히 설정하는 방법
+2. li tag에 padding 을 넣는 방법
+
+1번 방법을 사용하면 
+hover 등을 설정했을때 li와ul tag사이에서 간격등이 나타나는 경우가 발생할 수 있다
+2번 방법을 사용하면 
+다른처리를 사용하지 않아도 비교적 깔끔한 모양을 얻을수 있다
+
+
+ */
+nav#main_nav li {
+	/*	top,bottom :5px left,right: 12px */
+	padding: 5px 12px;
+	transition: 0.3s;
+}
+
+nav#main_nav li:first-child {
+	margin-left: 15px
+}
+/* flex된 item의 특정한 요소의 margin-left를 auto로 지정하면 해당요소 부터 오른쪽으로 밀리는 layout을 만들수 있다.
+ */
+nav#main_nav li:nth-or-type(5) {
+	margin-left: auto;
+}
+
+nav#main_nav li:hover {
+	background-color: #999;
+}
+</style>
+<!-- 같은 jsp파일에있기때문에 rootPath를 사용할수있다 test하는 과정에서
+오류가나는지 확인하고 파일로 분리한다 -->
+<script>
+	//jsp의 tap의 변수를 js변수로 다시 선언하기
+	//var 전역변수, 위치에 관계없이 어디서나 읽을 수 있는 변수
+	/* var rootPath ="/jdbc" */
+	var rootPath = "${rootPath}";
+</script>
+<script src="${rootPath}/static/js/main_nav.js?ver=2021-06-10"></script>
+<header>
+	<h1>도서정보관리 2021</h1>
+	<p>빛고을 도서관리 시스템 2021 V1</p>
+</header>
+<nav id="main_nav">
+	<ul>
+		<li>HOME</li>
+		<li>도서정보</li>
+		<li>출판사정보</li>
+		<li>저자정보</li>
+		<li>로그인</li>
+		<li>회원가입</li>
+	</ul>
+</nav>
