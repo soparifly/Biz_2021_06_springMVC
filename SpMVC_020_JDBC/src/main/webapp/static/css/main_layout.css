@@ -1,5 +1,34 @@
 @charset "UTF-8";
+* {
+	/* 미세하게 헤더부분에여백이 있는데 이걸 없애주는 태 */
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+header {
+	background-color: #907fa4;
+	color: white;
+	text-shadow: 1px 1px 1px black;
+	text-align: center;
+	padding: 2rem;
+	/* 1rem은 태그안에 가장 큰 글자의 두배만큼 패딩을 준다는 의미로볼수있 */
+}
+body {
+	display:block;
+	flex-direction: column;
+	width: :100%;
+	height:100vh;
+}
+section.main_sec{
+	flex:auto;
+}
+/* 
+style지정할때 tag에 id나 class를 부착하지 않고 지정하는 경우
+1. 현재 main_layout.css파일은 모든 jsp 에서 공통으로 include 모든 jsp 에 있는 table 에 공통으로 속성이 적용된다
 
+2.만약 특정한 jsp 파일 에서만 table tag에 속성을 부여하고 싶으면 table tag에 id나 class를 지정하고 table#id , 
+table.class형식으로 지정해줘야한다
+ */
 table {
 	border-collapse: collapse;
 	border-spacing: 0;

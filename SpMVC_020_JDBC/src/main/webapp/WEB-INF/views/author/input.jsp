@@ -8,7 +8,7 @@
 <%@ include file="/WEB-INF/views/include/include_head.jspf"%>
 <body>
 	<%@ include file="/WEB-INF/views/include/include_header.jspf"%>
-
+<section class="main_sec">
 	<form method="POST">
 		<fieldset>
 			<legend>저자정보 등록</legend>
@@ -43,7 +43,7 @@
 		<button type="reset" class="btn_reset author">다시작성</button>
 		<button type="button" class="btn_list author">리스트로</button>
 	</div>
-
+</section>
 	<%@ include file="/WEB-INF/views/include/include_footer.jspf"%>
 </body>
 <script>

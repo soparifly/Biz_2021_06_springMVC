@@ -1,11 +1,14 @@
 @charset "UTF-8";
 
 section#main_sec {
+	flex:auto;
 	width: 100%;
 	margin: 5px auto;
 	border: 1px solid #999;
 	display: flex;
 	justify-content: space-around;
+	overflow: auto;
+
 }
 
 section#main_sec article {
@@ -36,9 +39,22 @@ section#ad_sec article {
 	margin: 5px 3px;
 	height:50vh;
 	margin: 6px 3px;
+	/* 
+	article박스에 지정된 background 를 박스에 가득차도록 하고 이미지는 box크기만큼 가로세로를조절하여 채워라 하는얘기 */
+	/* 현재 article에 backgoround 를 채우면서 nth-of-type(*) 가상 클래스를 사용하였더니 배경사이즈가 작동하지 않더라
+	해결방법 	include_header.jspf를 참조 
+1. 
+*/
 	background: url("${rootPath}/static/images/add.png") no-repeat;
-	background-size: 100% 100%;
+	background-size: 100% 100%;/* cover */
 	border-radius: 5px;
+}
+
+section#ad_sec article:nth-last-of-type(n) {/* 가상클래스를 사용하는데 위치 nth-last-of-type(n)를 지정하여 
+sytle을 지정하는데 전역시스템 변수인 n이 존재를 한다
+
+n은 style의 가상클래스에서 사용하는 변수로 모든것을이라는 의미이다 */	
+background-size: 100% 100%;
 }
 
 /*
