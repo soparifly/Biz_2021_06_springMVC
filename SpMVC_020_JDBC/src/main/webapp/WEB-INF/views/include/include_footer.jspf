@@ -16,4 +16,7 @@ address {
 
 <footer>
 	<address>CopyRight &copy; soparifly@naver.com</address>
+<div id="modal">
+	<span>X</span>
+</div>
 </footer>

@@ -19,12 +19,12 @@
 			</div>
 			<div>
 				<label>출판사명</label> <input name="cp_name" id="cp_name"
-					placeholder="">
+					placeholder=""><span id="cp_title">출판사명</span>
 
 			</div>
 			<div>
 				<label>대표</label> <input name="cp_ceo" id="cp_ceo"
-					placeholder="">
+					placeholder=""><span id="cp_ceo">대표</span>
 
 			</div>
 			<div>
@@ -40,13 +40,12 @@
 					placeholder="">
 			</div>
 		</fieldset>
-	</form>
-
 	<div class="btn_box">
 		<button type="button" class="btn_save comp">저장</button>
 		<button type="reset" class="btn_reset comp">다시작성</button>
 		<button type="button" class="btn_list comp">리스트로</button>
 	</div>
+	</form>
 </section>
 	<%@ include file="/WEB-INF/views/include/include_footer.jspf"%>
 </body>

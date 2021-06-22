@@ -1,5 +1,7 @@
 package com.callor.jdbc.service.impl;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.callor.jdbc.model.CompVO;
@@ -34,9 +36,41 @@ public class CompServiceImpV1 implements CompService {
 			
 		}
 		vo.setCp_code(cpCode);
-		compDao.insert(vo);
 		
-		return 0;
+		
+		return compDao.insert(vo);
 	}
+	@Override
+	public List<CompVO> findByCName(String cp_name) {
+		// TODO Auto-generated method stub
+//		전달받은 출판사 이름에서앞뒤의 빈칸을 제외하고 Dao에게 Toss하기
+		
+		return compDao.findByCName(cp_name.trim());
+		
+		
+	}
+	@Override
+	public List<CompVO> selectAll() {
+		// TODO Auto-generated method stub
+		
+		
+		return compDao.selectAll();
+	}
+	@Override
+	public CompVO findByCCode(String sp_code) {
+		// TODO Auto-generated method stub
+		return compDao.findById(sp_code.trim());
+	}
+	@Override
+	public List<CompVO> findByTitleAndCeoAndTel(String Text) {
 
+			List<CompVO> mainList = compDao.findByCName(Text);
+			List<CompVO> ceoList = compDao.findByCeo(Text);
+			List<CompVO> telList = compDao.findByTel(Text);
+			
+			mainList.addAll(ceoList);
+			mainList.addAll(telList);
+		return mainList;
+	}
+	
 }

@@ -36,13 +36,13 @@
 			</div>
 	
 		</fieldset>
-	</form>
 
 	<div class="btn_box">
 		<button type="button" class="btn_save author">저장</button>
 		<button type="reset" class="btn_reset author">다시작성</button>
 		<button type="button" class="btn_list author">리스트로</button>
 	</div>
+	</form>
 </section>
 	<%@ include file="/WEB-INF/views/include/include_footer.jspf"%>
 </body>

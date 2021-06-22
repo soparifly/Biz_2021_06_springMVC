@@ -8,7 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.callor.jdbc.pesistance.BookDao;
+import com.callor.jdbc.service.AuthorService;
+import com.callor.jdbc.service.HomeService;
 import com.callor.jdbc.service.RentService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -29,8 +30,12 @@ public class HomeController {
 //	protected String user_email;
 	
 	protected final RentService rentService;
-	public HomeController(RentService rentService) {
+	protected final HomeService homeService;
+	
+	
+	public HomeController(RentService rentService, HomeService homeService) {
 		// TODO Auto-generated constructor stub
+		this.homeService = homeService;
 		this.rentService = rentService;
 	}
 /*
@@ -48,6 +53,8 @@ public class HomeController {
  * */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
+		
+		homeService.dashBoard(model);
 		
 		
 		/*

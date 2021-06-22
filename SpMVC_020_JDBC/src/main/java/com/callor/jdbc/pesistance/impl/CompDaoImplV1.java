@@ -49,20 +49,19 @@ public class CompDaoImplV1 implements CompDao {
 		List<CompVO> compList = jdbcTemplate.query(sql, new BeanPropertyRowMapper<CompVO>(CompVO.class));
 
 		log.debug("Comp select {} " + compList.toString());
-		return null;
+		return compList;
 	}
 
 	@Override
-	public CompVO findById(String pk) {
-		// TODO Auto-generated method stub
-		String sql = " SELECT * FROM tbl_company ";
-		sql += " WHERE cp_title Like '%' || ? || '%'   ";
+	public CompVO findById(String cp_code) {
 
-		Object[] params = new Object[] { pk };
+		String sql = "SELECT * FROM tbl_company WHERE cp_code = ?";
+		Object[] params = new Object[] { cp_code };
 
-		CompVO vo = (CompVO) jdbcTemplate.query(sql, new BeanPropertyRowMapper<CompVO>(CompVO.class));
+		CompVO vo = (CompVO) jdbcTemplate.query(sql, params, new BeanPropertyRowMapper(CompVO.class));
 
 		return vo;
+
 	}
 
 	@Override
@@ -105,8 +104,8 @@ public class CompDaoImplV1 implements CompDao {
 
 //		cpcode가 String wrapper class type이므로Object[] 배열로 변환하지 않고  바로전달이 가능하다
 //		Object[] params = new Object[] { cpcode };
-		jdbcTemplate.update(sql, cpcode);
-		return 0;
+
+		return jdbcTemplate.update(sql, cpcode);
 	}
 
 	@Override
@@ -115,6 +114,44 @@ public class CompDaoImplV1 implements CompDao {
 		String sql = " SELECT MAX(cp_code ) FROM tbl_company";
 		String cpCode = (String) jdbcTemplate.queryForObject(sql, String.class);
 		return cpCode;
+	}
+
+	@Override
+	public List<CompVO> findByCName(String cname) {
+
+		String sql = " SELECT * FROM tbl_company ";
+
+		sql += "WHERE cp_title LIKE COMCAT('%', ? , '%') ";
+
+		List<CompVO> compList = jdbcTemplate.query(sql, new Object[] { cname },
+
+				new BeanPropertyRowMapper<CompVO>(CompVO.class));
+		return compList;
+
+	}
+
+	@Override
+	public List<CompVO> findByTel(String tel) {
+		String sql = " SELECT * FROM tbl_company ";
+
+		sql += "WHERE cp_tel LIKE COMCAT('%', ? , '%') ";
+
+		List<CompVO> compList = jdbcTemplate.query(sql, new Object[] { tel },
+
+				new BeanPropertyRowMapper<CompVO>(CompVO.class));
+		return compList;
+	}
+
+	@Override
+	public List<CompVO> findByCeo(String ceo) {
+		String sql = " SELECT * FROM tbl_company ";
+
+		sql += "WHERE cp_ceo LIKE COMCAT('%', ? , '%') ";
+
+		List<CompVO> compList = jdbcTemplate.query(sql, new Object[] { ceo },
+
+				new BeanPropertyRowMapper<CompVO>(CompVO.class));
+		return compList;
 	}
 
 }

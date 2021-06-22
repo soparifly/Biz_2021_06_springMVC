@@ -7,33 +7,46 @@
 <%@ include file="/WEB-INF/views/include/include_head.jspf"%>
 <body>
 	<%@ include file="/WEB-INF/views/include/include_header.jspf"%>
-<section class="main_sec">
-	<table>
+	<section class="main_sec">
+		<table>
 
-		<tr>
-			<td>ISBN</td>
-			<td>도서</td>
-			<td>출판사</td>
-			<td>저자</td>
-			<td>출판연도</td>
-			<td>가격</td>
-			<td>페이지수</td>
-		</tr>
-		<tr>
-			<td>ISBN</td>
-			<td>도서</td>
-			<td>출판사</td>
-			<td>저자</td>
-			<td>출판연도</td>
-			<td>가격</td>
-			<td>페이지수</td>
-		</tr>
-	</table>
+			<tr>
+				<td>NO</td>
+				<td>ISBN</td>
+				<td>도서</td>
+				<td>출판사</td>
+				<td>저자</td>
+				<td>출판연도</td>
+				<td>가격</td>
+				<td>페이지수</td>
+			</tr>
+			<c:choose>
+				<c:when test="${empty BOOKS}">
+					<tr>
+						<td colspan="8">데이터가 없음</td>
+					</tr>
+				</c:when>
+				<c:otherwise>
+					<c:forEach items="${BOOKS}" var="BOOK" varStatus="ST">
+						<tr>
+							<td>${ST.index}</td>
+							<td>${BOOK.bk_isbl}</td>
+							<td>${BOOK.bk_title}</td>
+							<td>${BOOK.bk_comp}</td>
+							<td>${BOOK.bk_author}</td>
+							<td>${BOOK.bk_date}</td>
+							<td>${BOOK.bk_price}</td>
+							<td>${BOOK.bk_pages}</td>
+						</tr>
+					</c:forEach>
+				</c:otherwise>
+			</c:choose>
+		</table>
 
-	<div class="btn_box">
-		<button class="btn_insert books">도서등록</button>
+		<div class="btn_box">
+			<button class="btn_insert books">도서등록</button>
 
-	</div>
+		</div>
 	</section>
 	<%@ include file="/WEB-INF/views/include/include_footer.jspf"%>
 </body>

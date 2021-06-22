@@ -13,6 +13,10 @@ form#login_form {
 	text-align: center;
 	margin: 100px auto;
 	border-radius: 10px;
+	z-index: 500;
+	
+	animation-name:aniTopDown;
+	animation-duation:0.8;
 }
 
 form#login_form h2 {
@@ -32,6 +36,10 @@ form#login_form input {
 	border: 2px solid #926e6f;
 	text-align: center;
 	transition: 0.3s;
+	osition:absolute;
+	top:50%;
+	left:50%;
+	transsform:translate(-50%,-50%);
 }
 
 form#login_form input:focus {
@@ -66,6 +74,24 @@ form#login_form div.msg {
 	background-color: red;
 	color: yellow;
 	font-size: 10px
+}
+
+div#model {
+	display: block;
+}
+
+@keyframes aniTopDown {
+from { 
+	top:-300px;
+	opacity: 0;
+}
+
+to {
+	top: 50%;
+	transform:translateY(-50%);
+	opacity: 1;
+}
+
 }
 </style>
 <body>

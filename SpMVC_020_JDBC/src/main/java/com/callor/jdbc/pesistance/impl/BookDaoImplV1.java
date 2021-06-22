@@ -14,26 +14,39 @@ import com.callor.jdbc.pesistance.BookDao;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@Repository("bookDaoV1") //컴포넌트로 사용하는 어노테이션 이이름으로 사용하겠다 라는 의미 html의 id이름과 기능이 유사하다
-public class BookDaoImplV1 implements BookDao{
+@Repository("bookDaoV1") // 컴포넌트로 사용하는 어노테이션 이이름으로 사용하겠다 라는 의미 html의 id이름과 기능이 유사하다
+public class BookDaoImplV1 implements BookDao {
 //	private static Logger log = LoggerFactory.getLogger("SERVICE");
 //  메번 사용하기 임포트를 두개나 선택해줘야하기때문에 롬복을 사용해서 
 //	어노테이션을 붙여주고 사용해준다 
-	
-	
+
 	// TODO jtbc-context.xml에 선언된 jdbcTemplat bean 사용하기
-		protected JdbcTemplate jdbcTemplate;
-		public BookDaoImplV1(JdbcTemplate jdbcTemplate) {
-			this.jdbcTemplate = jdbcTemplate;
-		}
-		
+	protected JdbcTemplate jdbcTemplate;
+
+	public BookDaoImplV1(JdbcTemplate jdbcTemplate) {
+		this.jdbcTemplate = jdbcTemplate;
+	}
+
 	@Override
 	public List<BookVO> selectAll() {
-		
-		String sql = " SELECT * FROM tbl_books ";
+
+		String sql = " SELECT ";
+		sql += "bk_isbn,";
+		sql += "bk_title AS bk_ccode, ";
+		sql += "bk_comp AS bk_ccode ,";
+		sql += "bk_acode,";
+		sql += "bk_date,";
+		sql += "bk_price,";
+		sql += "bk_pages,";
+		sql += " * FROM tbl_books B";
+		sql += " LEFT JOIN tbl_author A";
+		sql += " ON B.bk_author = A.au_code ";
+		sql += " LEFT JOIN tbl_comp C "
+				+ " ON B.bk_ccode = C.cp_code";
 		// ResultSet 으로 while문을 이용해 rSet에 데이터를 담을때 사용했던 방법
-		List <BookVO> books = jdbcTemplate.query(sql,new BeanPropertyRowMapper<BookVO>(BookVO.class));
-		return null;
+		List<BookVO> books = jdbcTemplate.query(sql, new BeanPropertyRowMapper<BookVO>(BookVO.class));
+		log.debug("SELECT {} ", books.toString());
+		return books;
 	}
 
 	@Override
@@ -49,9 +62,21 @@ public class BookDaoImplV1 implements BookDao{
 	}
 
 	@Override
-	public int update(BookVO vo) {
+	public int update(BookVO bookVO) {
 		// TODO Auto-generated method stub
-		return 0;
+		String sql = " INSERT INTO tbl_books  ( ";
+		sql += "bk_isbn,";
+		sql += "bk_title,";
+		sql += "bk_ccode,";
+		sql += "bk_acoder,";
+		sql += "bk_date,";
+		sql += "bk_price,";
+		sql += "bk_pages )";
+		sql += " VALUES ( ?,?,?,?,?,?,? ) ";
+
+		Object[] params = new Object[] { bookVO.getBk_isbn(), bookVO.getBk_title(), bookVO.getBk_ccode(),
+				bookVO.getBk_acode(), bookVO.getBk_date(), bookVO.getBk_price(), bookVO.getBk_pages() };
+		return jdbcTemplate.update(sql, params);
 	}
 
 	@Override

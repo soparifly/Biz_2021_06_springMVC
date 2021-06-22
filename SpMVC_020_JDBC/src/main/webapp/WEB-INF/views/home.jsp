@@ -10,38 +10,61 @@
 <title>Insert title here</title>
 
 </head>
-	<%@include file="/WEB-INF/views/include/include_head.jspf"%>
+<%@include file="/WEB-INF/views/include/include_head.jspf"%>
 <body>
 	<%@include file="/WEB-INF/views/include/include_header.jspf"%>
 	<section id="main_sec">
 		<article>
 			<h3>출판사</h3>
 			<ul>
+			<c:choose>
+				<c:when test="${not empty COMPS}">
+					<c:forEach var="index" begin="0" end="4">
+						<li>${COMPS[index].cp_title}</li>
+					</c:forEach>
+			</c:when>
+			<c:otherwise>
 				<li>출판사정보</li>
 				<li>출판사정보</li>
 				<li>출판사정보</li>
 				<li>출판사정보</li>
 				<li>출판사정보</li>
+			</c:otherwise>
+			</c:choose>
 			</ul>
 		</article>
 		<article>
 			<h3>도서정보</h3>
 			<ul>
-				<li>도서정보</li>
-				<li>도서정보</li>
-				<li>도서정보</li>
-				<li>도서정보</li>
-				<li>도서정보</li>
+						<c:choose>
+				<c:when test="${not empty BOOKS}">
+					<c:forEach var="index" begin="0" end="4">
+						<li>${BOOKS[index].cp_title},&nbsp;&nbsp;
+						${BOOKS[index].cp_ccode}
+						${BOOKS[index].cp_acode}</li>
+					</c:forEach>
+			</c:when>
+			<c:otherwise>
+				<li>도서정보없음</li>
+			</c:otherwise>
+			</c:choose>
 			</ul>
 		</article>
 		<article>
 			<h3>저자정보</h3>
 			<ul>
-				<li>저자정보</li>
-				<li>저자정보</li>
-				<li>저자정보</li>
-				<li>저자정보</li>
-				<li>저자정보</li>
+									<c:choose>
+				<c:when test="${not empty AUTHORS}">
+					<c:forEach var="index" begin="0" end="4">
+						<li>${AUTHORS[index].au_name},&nbsp;&nbsp;
+						${AUTHORS[index].au_tel}
+						${AUTHORS[index].au_genre}</li>
+					</c:forEach>
+			</c:when>
+			<c:otherwise>
+				<li>도서정보없음</li>
+			</c:otherwise>
+			</c:choose>
 			</ul>
 		</article>
 	</section>
@@ -54,5 +77,6 @@
 		<article></article>
 	</section>
 	<%@ include file="/WEB-INF/views/include/include_footer.jspf"%>
+
 </body>
 </html>

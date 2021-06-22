@@ -8,16 +8,20 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@NoArgsConstructor
-@AllArgsConstructor
 @ToString
+@NoArgsConstructor   // super 생성자
+@AllArgsConstructor   // field 생성자
 public class BookVO {
-	private String bk_isbn;//	CHAR(13)		PRIMARY KEY
-	private String bk_comp;//	VARCHAR(15)	NOT NULL	
-	private String bk_title;//	VARCHAR(125)	NOT NULL	
-	private String bk_author;//	VARCHAR(50)	NOT NULL	
-	private String bk_trnans;//	VARCHAR(20)		
-	private String bk_date;//	VARCHAR(10)
+
+   private String bk_isbn;
+   private String bk_title;
+   private String bk_ccode;
+   private String bk_acode;
+   private String bk_date;
+   private int bk_price;
+   private int bk_pages;
+   
+}
 	/*
 	 * VO(DTO)를 설계할때 숫자형 변수는 PK나 특별히 조회할때 사용하는 컬럼은
 	 * class형 (Integer, Long, Float)으로 선언하는 것이 좋다
@@ -31,6 +35,6 @@ public class BookVO {
 	 *  DB에 insert를 수행할때 해당 컬럼이 not null로 되어있을때
 	 *  별다른 처리를 하지 않아도 SQL exeption이 발생할 수 있
 	 */
-	private int bk_pages;//	INT		
-	private int bk_price;//	INT		
-}
+	
+	
+	

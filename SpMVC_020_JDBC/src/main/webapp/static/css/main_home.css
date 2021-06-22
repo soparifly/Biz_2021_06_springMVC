@@ -26,6 +26,12 @@ section#main_sec article ul {
 section#main_sec article li {
 	margin: 0 50px;
 	padding: 0 5px;
+	
+	
+	max-width: 100%;
+	overflow:hidden;
+	white-space:nowrap;
+	text-overflow: ellipsis;
 }
 
 section#ad_sec {
@@ -60,3 +66,35 @@ background-size: 100% 100%;
 /*
 home.jsp의 중간부분 이미지를 표현하는 부분의 CSS는 rootPath문제로 여기에 둘수 없어서 include_header.jspf 파일에 욺겼다.
 */
+
+
+
+div#modal{
+position: fixed;
+top:0;
+left:0;
+bottom:0;
+right:0;
+background-color: black;
+opacity: 0.5;
+display:none;
+}
+div#modal span{ 
+position: absolute;
+display: inline-block;
+top: 30px;
+right: 30px;
+font-size: 30px;
+color: white;
+font-weight: 900;
+border-radius: 50%;
+padding:10px 20px;
+transition: 0.6s;
+z-index:100;
+}
+
+div#modal span:hover{
+background-color: white;
+cursor:pointer;
+
+}/
