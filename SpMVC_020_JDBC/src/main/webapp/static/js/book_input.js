@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
       let form = document.querySelector("form#book_input");
 
       let bk_isbn = form.querySelector("input#bk_isbn");
-      let bk_title = form.querySelector("input#bk_title");
+    let bk_title =form.querySelector("input#bk_title");
       let bk_ccode = form.querySelector("input#bk_ccode");
       let bk_acdoe = form.querySelector("input#bk_acdoe");
       let bk_price = form.querySelector("input#bk_price");

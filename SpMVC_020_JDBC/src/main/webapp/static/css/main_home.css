@@ -11,10 +11,12 @@ section#main_sec {
 
 }
 
+	/* li tag에 ellippsis를 적용하기 위하여 article box 의 width를 위에서 먼저 지정  */
 section#main_sec article {
 	flex: 1;
+	width:30%;
 	border: 1px solid green;
-	margin: 6px 9px;
+	margin: 6px 3px;
 	padding: 5px;
 }
 
@@ -27,10 +29,9 @@ section#main_sec article li {
 	margin: 0 50px;
 	padding: 0 5px;
 	
-	
-	max-width: 100%;
 	overflow:hidden;
 	white-space:nowrap;
+	/* 감싸고 있는 box의 width를 지정하면 내부의 tag는 자체적으로 모습을 감춘다 (ellipsis) 가 적용이된다 */
 	text-overflow: ellipsis;
 }
 

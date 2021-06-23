@@ -32,17 +32,18 @@ public class BookDaoImplV1 implements BookDao {
 
 		String sql = " SELECT ";
 		sql += "bk_isbn,";
-		sql += "bk_title AS bk_ccode, ";
-		sql += "bk_comp AS bk_ccode ,";
-		sql += "bk_acode,";
+		sql += "bk_title , ";
+		sql += " CONCAT ( '(', bk_ccode , ')' , C.cp_title )   AS bk_ccode ,";
+		sql += " CONCAT ( '(', A.au_name , ')' ) AS bk_acode,";
 		sql += "bk_date,";
 		sql += "bk_price,";
-		sql += "bk_pages,";
-		sql += " * FROM tbl_books B";
-		sql += " LEFT JOIN tbl_author A";
-		sql += " ON B.bk_author = A.au_code ";
-		sql += " LEFT JOIN tbl_comp C "
+		sql += "bk_pages ";
+		sql += "  FROM tbl_books B";
+		sql += " 	LEFT JOIN tbl_author A";
+		sql += " ON B.bk_acode = A.au_code ";
+		sql += " 	LEFT JOIN tbl_company C "
 				+ " ON B.bk_ccode = C.cp_code";
+		
 		// ResultSet 으로 while문을 이용해 rSet에 데이터를 담을때 사용했던 방법
 		List<BookVO> books = jdbcTemplate.query(sql, new BeanPropertyRowMapper<BookVO>(BookVO.class));
 		log.debug("SELECT {} ", books.toString());
@@ -56,27 +57,27 @@ public class BookDaoImplV1 implements BookDao {
 	}
 
 	@Override
-	public int insert(BookVO vo) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int update(BookVO bookVO) {
+	public int insert(BookVO bookVO) {
 		// TODO Auto-generated method stub
 		String sql = " INSERT INTO tbl_books  ( ";
 		sql += "bk_isbn,";
 		sql += "bk_title,";
 		sql += "bk_ccode,";
-		sql += "bk_acoder,";
+		sql += "bk_acode,";
 		sql += "bk_date,";
 		sql += "bk_price,";
 		sql += "bk_pages )";
 		sql += " VALUES ( ?,?,?,?,?,?,? ) ";
-
+		
 		Object[] params = new Object[] { bookVO.getBk_isbn(), bookVO.getBk_title(), bookVO.getBk_ccode(),
 				bookVO.getBk_acode(), bookVO.getBk_date(), bookVO.getBk_price(), bookVO.getBk_pages() };
 		return jdbcTemplate.update(sql, params);
+	}
+
+	@Override
+	public int update(BookVO bookVO) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 	@Override

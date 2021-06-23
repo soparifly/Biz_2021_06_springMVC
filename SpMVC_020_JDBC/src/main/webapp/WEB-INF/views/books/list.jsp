@@ -30,10 +30,10 @@
 					<c:forEach items="${BOOKS}" var="BOOK" varStatus="ST">
 						<tr>
 							<td>${ST.index}</td>
-							<td>${BOOK.bk_isbl}</td>
+							<td>${BOOK.bk_isbn}</td>
 							<td>${BOOK.bk_title}</td>
-							<td>${BOOK.bk_comp}</td>
-							<td>${BOOK.bk_author}</td>
+							<td><span><label class ="truncate">${BOOK.bk_ccode}</label></span></td>
+							<td><span><label class ="truncate">${BOOK.bk_acode}</label></span></td>
 							<td>${BOOK.bk_date}</td>
 							<td>${BOOK.bk_price}</td>
 							<td>${BOOK.bk_pages}</td>
