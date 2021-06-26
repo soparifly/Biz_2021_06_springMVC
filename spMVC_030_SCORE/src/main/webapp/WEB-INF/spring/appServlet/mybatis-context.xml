@@ -24,7 +24,8 @@
 		<property name="typeAliasesPackage" value="com.callor.score.model"/>
 		<property name="mapperLocations" value="/WEB-INF/spring/mybatis-mapper/*-mapper.xml"/>
 	</bean>
-	<mybatis-spring:scan base-package="com.callor.score.dao"/>
+	<!--위치상관없음 -->
+	<mybatis-spring:scan base-package="com.callor.score.dao.ext"/>
 	<!-- sessionTemplate -->
 	<bean class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg ref="sqlSessionFactory" />

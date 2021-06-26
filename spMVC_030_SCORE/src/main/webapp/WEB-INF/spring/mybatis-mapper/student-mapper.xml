@@ -2,23 +2,37 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.callor.score.dao.StudentDao">
+<mapper namespace="com.callor.score.dao.ext.StudentDao">
+
+	<!-- mapper의 각 기능의 id값은 Dao 에 설정된 method 으로 설정한다 Dao의 mehtod가 id로 사용되는 까닭에 
+		mybatis에서는 Dao의 method 를 중복정의 할수 없다. -->
+	<select id="getMaxStNum" resultType="String">
+
+		SELECT MAX(st_num) AS st_num FROM tbl_student
+
+
+	</select>
 
 	<select id="selectAll" resultType="StudentVO">
 
 		SELECT * FROM tbl_student
+		ORDER BY st_num DESC
+		LIMIT 10
 
 	</select>
-	<select id="findById" resultType="StudentVo">
+	<select id="findById" resultType="StudentVO">
 
-		SELECT * FROM tbl_student WHERE st_num = #{st_num}
+		SELECT * FROM tbl_student WHERE
+		st_num = #{st_num}
 
 	</select>
 	<update id="update" parameterType="StudentVO">
-		UDPATE tbl_student SET st_num = #{st_num}
+		UDPATE tbl_student SET
+		st_num = #{st_num}
 		st_name = #{st_name},
 		st_dept = #{st_dept},
-		st_grade = #{st_grade},
+		st_grade =
+		#{st_grade},
 		st_tel = #{st_tel},
 		st_addr = #{st_addr}
 
@@ -31,11 +45,12 @@
 
 	<insert id="insert" parameterType="StudentVO">
 		INSERT INTO tbl_student(
-		st_num, st_name, st_dept, st_grade, st_tel
+		st_num, st_name, st_dept, st_grade, st_tel, st_addr
 		)
-		VALUES(
+		VALUES (
 		#{st_num},#{st_name},#{st_dept},
-		#{st_grade},'{st_tel},#{st_addr}
+		#{st_grade},#{st_tel},#{st_addr}
 		)
 	</insert>
+
 </mapper>
