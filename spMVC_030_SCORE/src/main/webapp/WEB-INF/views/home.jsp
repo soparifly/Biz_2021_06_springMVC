@@ -56,8 +56,8 @@ header {
 	text-align: center;
 	text-shadow: 2px 2px 2px 2px blue;
 	color: whitesmoke;
-	/* padding: 3rem;/*  * */
-	/
+	padding: 2rem;
+	
 }
 
 header div {
@@ -71,7 +71,18 @@ nav{
  	background-color:blue;
  	color:whitesmoke; 
 	width:100wv;
+	transition:1s;
  }
+ 
+nav.fixed{
+	position: fixed;
+	top:0;
+	left:0;
+	right: 10px;
+	border-bottom-right-radious:20px;
+	box-shadow: 3px 3px 3px rba(0,0,0,0.5);
+	
+}
 
 nav ul{
 	list-style: none;
@@ -95,15 +106,6 @@ nav li:nth-of-type(2){
 
 }
 
-nav.fixed{
-	positon: fixed;
-	top:0;
-	left:0;
-	right: 10px;
-	border-bottom-right-radious:20px;
-	box-shadow: 3px 3px 3px rba(0,0,0,0.5);
-	
-}
 
 section#main_sec {
 	flex: 1;
@@ -374,7 +376,6 @@ let table = document.querySelector("table.detail")
 	화면문서의 top 좌표를 추출하여
 	header box의 높와 비교한다
 	header bxo의 높이에 -1 을 곱하고 그 값보다 작아지면===headerbox가화면에서 사라지면
-
 	*/
 let main_nav = document.querySelector("nav#main_nav")
 let main_header = document.querySelector("header")

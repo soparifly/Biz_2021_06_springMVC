@@ -10,7 +10,6 @@
 
 		SELECT MAX(st_num) AS st_num FROM tbl_student
 
-
 	</select>
 
 	<select id="selectAll" resultType="StudentVO">
@@ -25,16 +24,15 @@
 		st_num = #{st_num}
 
 	</select>
+	
 	<update id="update" parameterType="StudentVO">
 		UDPATE tbl_student SET
 		st_num = #{st_num}
 		st_name = #{st_name},
 		st_dept = #{st_dept},
-		st_grade =
-		#{st_grade},
+		st_grade = #{st_grade},
 		st_tel = #{st_tel},
 		st_addr = #{st_addr}
-
 	</update>
 
 
