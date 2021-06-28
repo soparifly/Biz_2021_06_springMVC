@@ -34,12 +34,10 @@
 		SB.sb_name sc_sbname,
 		sc_score
 		FROM tbl_score SC
-		LEFT JOIN tbl_student ST
-		ON SC.sc_stnum = ST.st_num
-		LEFT
-		JOIN tbl_subject SB
-		ON SC.sc_sbcode =
-		SB.sb_code
+			LEFT JOIN tbl_student ST
+				ON SC.sc_stnum = ST.st_num
+			LEFT JOIN tbl_subject SB
+				ON SC.sc_sbcode = SB.sb_code
 		ORDER BY sc_stnum,
 		sc_sbcode
 	</select>
@@ -65,12 +63,10 @@
 		SB.sb_prof AS ss_prof,
 		SC.sc_stnum AS ss_scode,
 		SC.sc_score AS ss_score
-		FROM
-		tbl_subject SB
-		LEFT JOIN tbl_score SC
-		ON SC.sc_sbcode = SB.sb_code
-		AND
-		SC.sc_stnum = ${st_num}
+		FROM  tbl_subject SB
+			LEFT JOIN tbl_score SC 
+				ON SC.sc_sbcode = SB.sb_code
+				AND SC.sc_stnum = ${st_num}
 	</select>
 	
 	<insert id="insert" parameterType="ScoreVO">
@@ -81,11 +77,60 @@
 		#{sc_stnum},#{sc_sbcode},#{sc_score}
 		)
 	</insert>
+<!-- 
+	데이터를 insert를 먼저 수행하고 만약 데이터가 있으면 UDDATE를 수행하라는 의미
 
+	PK로 설정된 컬럼에 값을 셋팅한 후 insert를 수행한다 
+
+	sc_seq = 3 와 같은 방법으로 셋팅을 하여 insert를 수행 
+	
+	만약 table 의 sc_Seq 칼럼에 이미 3이라는 값이 있으면
+	unique	오류가 발생할것이다
+	내부적으로 mysql (DMBS) 에서 exception이 발생할 것이다 
+	
+	mysql INSERT 문에 다음 명령절이 있으면
+	ON DUPLICATE KEY UPDATE
+	
+	INSERT 를 수행할 때 Exeption을 발생하는 대신 PK를 기준으로 Update를 수행하는 절차가 된다
+	
+	* TIP
+	
+	PK를 기존의 칼럼지정으로 유지하면서
+	DUPLICATE .. UDATE를 사용하기 위하여 INSERT에 필요한 칼럼중
+	학번과 과목을 묶어서
+	UNIQUE를 설정했다
+	그랬더니 이미 값이 저장되어있는 학번과, 과목코드와 동일한 값을 INSERT를 하려고한다면
+	Exception이 발생하고 
+	자동으로 DUPLICATE... UPDATE가 실행되더라.
+	
+	ON DUPLICATEKEYUPDATE 를 사용하여
+	insert OR update
+	
+	이미 같은 pkfmf rkwsms epdlxjrk dlTdmaus
+	update를 하고, 없으면 추가하라
+	기본조건
+	insert를 할때 반드시 pk값이 value에 있어야한다
+	변경하여
+	insert를 할때 포함되는 칼럼들을 unique로 설정하면 같은 효과를 낼수있다 
+ -->
 	<insert id="insertOrUpdate">
 		INSERT INTO tbl_score(sc_stnum, sc_sbcode, sc_score)
 					VALUES(#{st_num},#{sc_sbcode},#{sc_score})
 		ON DUPLICATE KEY UPDATE 
 		sc_score = #{sc_score}
 	</insert>	
+
+	<insert id="insertOrUpdateForList">
+		INSERT INTO tbl_score(st_num,st_sbcode, sc_score)
+		VALUES 
+		<foreach collection="scoreMaps" item="map" separator=" , ">
+		(#{st_num},#{map.subject},#{map.score})
+		</foreach>
+		AS NEW(st_num,subject,score)
+		ON DUPLICATE KEY UPDATE
+		sc_score = score	
+	</insert>	
+
+
+
 </mapper>

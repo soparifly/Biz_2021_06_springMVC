@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.startea.team.dao.ext.EventDao;
+import com.startea.team.model.CustomVO;
 import com.startea.team.model.EventVO;
 import com.startea.team.service.EventService;
 
@@ -24,7 +25,10 @@ public class EventSerivceImplV1 implements EventService {
 
 	@Override
 	public List<EventVO> event() {
-		// TODO Auto-generated method stub
+		
+		
+		
+		
 		return evDao.selectAll();
 	}
 

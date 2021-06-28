@@ -75,9 +75,9 @@ public class StudentController {
 	}
 
 	@RequestMapping(value = "/detail",method=RequestMethod.POST)
-	public String detail(ScoreInputVO scInputVO){
-//			@RequestParam(name="subject") List<String> subject,
-//			@RequestParam(name="score") List<String>score)
+	public String detail(ScoreInputVO scInputVO,Model model){
+//	@RequestParam(name="subject") List<String> subject,
+//	@RequestParam(name="score") List<String>score)
 	
 //		log.debug("Subject : {}" + subject);
 //		log.debug("Score : {}" + score);
@@ -86,8 +86,18 @@ public class StudentController {
 		log.debug("Score Input{}" , scInputVO.toString());
 		
 		String ret = stService.scoreInput(scInputVO);
+		String st_num = scInputVO.getSt_num();
 		
-		return "home";
+//		redirect를 수행할때 queryString 을 보내고 싶으면 해당 변수와 값을 모델에 속성적용 메서드를 통해 적
+		/*
+		 * redirect:/student/detail?st_num=" + st_num
+		 * 와 같이 사용하지 않아도된다 
+		 * 
+		 */
+		model.addAttribute("st_num", st_num);
+		
+		
+		return "redirect:/student/detail";
 	}
 
 }

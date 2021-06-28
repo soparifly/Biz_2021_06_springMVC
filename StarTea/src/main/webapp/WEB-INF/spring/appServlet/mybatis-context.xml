@@ -8,6 +8,7 @@
 		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context-4.3.xsd
 		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
 		http://www.springframework.org/schema/tx https://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
+
 	<!-- DataSource -->
 	<bean id="ds" class="org.apache.commons.dbcp2.BasicDataSource">
 		<property name="driverClassName"
@@ -17,16 +18,19 @@
 		<property name="username" value="tdUser" />
 		<property name="password" value="tdUser" />
 	</bean>
-	
+
 	<!-- ssesionFactory -->
-	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-	<property name="dataSource" ref="ds"/>
-		<property name="mapperLocations" value="/WEB-INF/spring/appServlet/*-context.xml"/>
-		<property name="typeAliasesPackage" value="com.startea.team.model"/>
+	<bean id="sqlSessionFactory"
+		class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="ds" />
+		<property name="typeAliasesPackage"
+			value="com.startea.team.model" />
+		<property name="mapperLocations"
+			value="/WEB-INF/spring/appServlet/*-context.xml" />
 	</bean>
-	
+	<mybatis-spring:scan base-package="com.startea.team.dao.ext"/>
 	<!-- sessionTemplate -->
 	<bean class="org.mybatis.spring.SqlSessionTemplate">
-	<constructor-arg ref="sqlSessionFactory" />
+		<constructor-arg ref="sqlSessionFactory" />
 	</bean>
 </beans>

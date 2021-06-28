@@ -67,6 +67,44 @@ header div {
 	border: 1px dotted white;
 }
 
+nav{
+ 	background-color:blue;
+ 	color:whitesmoke; 
+	width:100wv;
+ }
+
+nav ul{
+	list-style: none;
+	display:flex;
+	margin:0 20px;
+	
+}
+nav li {
+	padding: 16px 12px;
+	border-bottom: 3px dotted transparent;
+	transition:1s;
+	cursor: pointer;
+}
+
+nav li:hover{
+	border-bottom: 3px solid yellow;
+}
+
+nav li:nth-of-type(2){
+	margin-left: 0 auto;
+
+}
+
+nav.fixed{
+	positon: fixed;
+	top:0;
+	left:0;
+	right: 10px;
+	border-bottom-right-radious:20px;
+	box-shadow: 3px 3px 3px rba(0,0,0,0.5);
+	
+}
+
 section#main_sec {
 	flex: 1;
 	width: 100wv;
@@ -78,7 +116,16 @@ section#main_sec {
 	/* background: linear-gradient(to bottom, blue, red); */
 	background-size: 100% 100%;
 	background-attachment: fixed;
-	background-size: 100% 100%
+	
+	/*
+	
+	overflow:auto;
+	header 와 nav를 화면에 고정하고
+	data가 보이는 부분만 scroll 하기 위하여
+	section#main_sec 에 overflow 속성 부여하기
+
+	  */
+
 }
 
 table {
@@ -249,6 +296,14 @@ form input:hover {
 			<p>대한 고교 성적 처리 시스템 2021</p>
 		</div>
 	</header>
+		<nav id="main_nav">
+			<ul>
+				<li>HOME</li>
+				<li>로그인</li>
+				<li>로그아웃</li>
+				<li>관리자</li>
+			</ul>
+		</nav>
 	<section id="main_sec">
 		<c:choose>
 			<c:when test="${ BODY == 'SCORE_VIEW' }">
@@ -315,5 +370,30 @@ let table = document.querySelector("table.detail")
 		
 		})
 	}
+	/* 화면이 아래 방향으로 스크롤될때
+	화면문서의 top 좌표를 추출하여
+	header box의 높와 비교한다
+	header bxo의 높이에 -1 을 곱하고 그 값보다 작아지면===headerbox가화면에서 사라지면
+
+	*/
+let main_nav = document.querySelector("nav#main_nav")
+let main_header = document.querySelector("header")
+/* header box의 높이가 얼마 */
+let main_header_height = main_header.offsetHeight;
+
+	document.addEventListener("scroll",()=>{
+		/* HTML 문서 전체의 크기 , 좌표 등을 추출하기 */
+		let doc_bound = document.querySelector("HTML")
+						.getBoundingClientRect();
+		let doc_top = doc_bound.top
+		
+		if (doc_top < main_header_height * -1 ){
+			main_nav.classList.add("fixed")
+		} else {
+			main_nav.classList.remove("fixed")
+		}
+})
+
+
 </script>
 </html>

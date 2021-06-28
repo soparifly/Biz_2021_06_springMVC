@@ -1,12 +1,14 @@
 package com.callor.score.service.impl;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 
 import com.callor.score.dao.ext.ScoreDao;
@@ -124,16 +126,58 @@ public class StudentServiceImplV1 implements StudentService {
 		return ret;
 	}
 
+//	이 메서드가 실행될때는 transaction으로 인식시켜줌
+//	한번이라도 exception을 발생하게되면
+//	롤백하고 insert를 수행하지않는다
+	/*
+	 * transaction의 조건 다수의 CRUD는 한개의 업무 프로세스이다 다수의 CRUD가 모두 정상적으로 완료되어야만 업무가 정상적으로
+	 * 수행된다
+	 * 
+	 * 업무가수행되는 동안 한곳이라도 CRUDa에서 오류가 발생하면 그중 CUD가 진행되는동안 문제가 발생하고 데이터의 오류가 저장될 것이다 이런
+	 * 상황을 방지 하기위하여 업무 단위를 Transaction이라는 단위로 묶고
+	 * 
+	 * 모든 업무가 완려되면데이터를 commit (실제 저장)하고
+	 * 
+	 * 그렇지 않으면 Rollback ALL(모두 취소)하는 처리
+	 * 
+	 * 
+	 * 
+	 */
+	@Transactional
 	@Override
 	public String scoreInput(ScoreInputVO scInputVO) {
-
+		
 		log.debug("Service {} : ", scInputVO.toString());
 
 		int size = scInputVO.getSubject().size();
+		String st_num = scInputVO.getSt_num();
+//		for (int i = 0; i < size - 2; i++) {
+//			scDao.insertOrUpdate(scInputVO.getSt_num(), scInputVO.getSubject().get(i), scInputVO.getScore().get(i));
+//			scDao.insertOrUpdate(scInputVO.getSt_num(), scInputVO.getSubject().get(i), scInputVO.getScore().get(i));
+//		}
+		/*
+		 * @Transactional 로 선언된 method에서 모든 데이터를 insertOrUdate를 수행한 다음 강제로 exception을
+		 * 발생하였다
+		 * 
+		 * 그랬더니 transactionManager에 의해서 모든 Insert Or update가 롤백되었다
+		 * 
+		 */
+//		이유 불문하고 무조건 RuntimeExceoption 발생시키
+//		throw new RuntimeException();
+//	Dao에 보낼 데이터를 변경하기
+// 	과목 코드와 점수의 List를 담을 변수 선언 
+		List<Map<String, String>> scoreMaps = new ArrayList<Map<String, String>>();
 		for (int i = 0; i < size; i++) {
-			scDao.insertOrUpdate(scInputVO.getSt_num(), scInputVO.getSubject().get(i), scInputVO.getScore().get(i));
-		}
-		return null;
-	}
+			String subject = scInputVO.getSubject().get(i);
+			String score = scInputVO.getScore().get(i);
 
+			Map<String, String> subjectScore = new HashMap<String, String>();
+			subjectScore.put("subject", subject);
+			subjectScore.put("score", score);
+			scoreMaps.add(subjectScore);
+		}
+		scDao.insertOrUpdateForList(st_num, scoreMaps);
+		return null; 
+		
+	}
 }

@@ -30,6 +30,17 @@
 	<bean class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg ref="sqlSessionFactory" />
 	</bean>
-	
-	
+	<!-- 트랜젝션 
+		spring.jdbc에서 transaction 설정하기
+		DataSourceTransactionManager를 bean으로 선언하기
+		이때 id 는 transactionManager로 설정하기
+		datasource 속성에 위해서선언한 dataSource를 ref로 지정하기
+		* tx  : 트랜잭션의 약자
+		tx:annotation-driven 선언한다
+	-->
+	<tx:annotation-driven/>
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="ds"/>
+				
+	</bean>
 </beans>

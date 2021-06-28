@@ -5,6 +5,6 @@ import java.util.List;
 import com.startea.team.model.CustomVO;
 
 public interface CustomService {
-
-	public List<CustomVO> menumake();
+	
+	public List<CustomVO> selectAll();
 }

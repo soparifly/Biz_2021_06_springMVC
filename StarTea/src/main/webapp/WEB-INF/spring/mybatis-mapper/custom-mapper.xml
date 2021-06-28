@@ -5,7 +5,18 @@
   
  <mapper namespace="com.startea.team.model">
  
- 	<select id="selectAll" resultType=""></select>
+ 	<select id="selectAll" resultType="CategoryVO">
+ 	
+ 	SELECT * FROM tbl_category
+ 	
+ 	</select>
+ 	
+ 	<select id="category1" resultType="CategoryVO">
+ 	
+ 	SELECT * FROM tbl_category
+ 	WHERE SUBSTR(menu_kinds,0,1)=#{menu_kinds};
+ 	
+ 	</select>
  	<select id="findById"></select>
  	<insert id="insert"></insert>
  	<update id="update"></update>
