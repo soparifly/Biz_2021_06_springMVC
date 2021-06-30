@@ -1,12 +1,10 @@
-package com.callor.book.service.impl;
+package com.callor.book.service.impl.books;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
@@ -20,13 +18,13 @@ import org.springframework.stereotype.Service;
 
 import com.callor.book.controller.config.NaverSecret;
 import com.callor.book.model.BookDTO;
-import com.callor.book.service.NaverService;
+import com.callor.book.service.NaverBookService;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@Service
-public class NaverServiceImplV1 implements NaverService<BookDTO> {
+@Service("naverBookServiceV1")
+public class NaverBookServiceImplV1 implements NaverBookService {
 	/*
 	 * naver에 요청하기 bookURL + "?query=" + 검색 문자열
 	 * 
@@ -145,7 +143,7 @@ public class NaverServiceImplV1 implements NaverService<BookDTO> {
 	@Override
 	public List<BookDTO> getNaverList(String jsonString) throws ParseException {
 		// TODO Auto-generated method stub
-		
+		log.debug("나는 ServiceV1");
 //		1. json Parsing 도구 선언
 		JSONParser jParser = new JSONParser();
 			JSONObject jObject = (JSONObject) jParser.parse(jsonString);

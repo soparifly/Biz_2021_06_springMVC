@@ -44,7 +44,18 @@ nav#main_nav input {
 	width: 100%;
 	border-radius: 10px;
 }
+/* 검색 결과가 표시되는 영역은 scroll지정하고 상단에 검색창 nav는 화면에 고정하기  
+1.body에 
+display: flex
+flex-direction:clum;
+height:100vh;
+2.검색 결과창에
+flex:1
+overflow: auto;
 
+
+
+*/
 section.content_box {
 	flex: 1;
 	border: 1px solid green;
@@ -65,15 +76,26 @@ section.content_box div.content {
 	transition: 0.5s;
 }
 
-section.content_box div.content::-webkit-scrollbar{
+section.content_box div.content::-webkit-scrollbar {
 	opacity: 0;
-	width:1px;
+	width: 1px;
 }
-section.content_box div.content::-sebkit-scrollbar-thumb,
-section.content_box div.content::-sebkit-scrollbar-track{
-	background-color: transparent;
-	transition:3s;
 
+section.content_box div.content::-webkit-scrollbar-thumb, section.content_box div.content::-webkit-scrollbar-track
+	{
+	background-color: transparent;
+	transition: 3s;
+}
+
+section.content_box div.content::-webkit-scrollbar {
+	opacity: 1;
+	width: 1px;
+}
+
+section.content_box div.content::-webkit-scrollbar {
+	opacity: 1;
+	width: 1px;
+	background-color: blue;
 }
 
 @media ( max-widht :1000px) {
@@ -110,30 +132,62 @@ nav#main_nav input {
 	width: 100%;
 	border-radius: 10px;
 }
+
+nav#main_nav select {
+	padding:8px;
+	width: 20%;
+	border-radius: 10px;
+	
+}
 </style>
 </head>
-<nav id="main_nav"></nav>
 <body>
+<nav id="main_nav">
+
+	<c:if test="${CAT=='BOOK'}">
+		<c:set var="pHolder" value="도서 검색어"/>
+	</c:if>
+	<c:if test="${CAT=='NEWS'}">
+		<c:set var="pHolder" value="도서 검색어"/>
+	</c:if>
+	<c:if test="${CAT=='MOVIE'}">
+		<c:set var="pHolder" value="도서 검색어"/>
+	</c:if>
+	
+	
+	<select name="category">
+		<option value="BOOK"
+		<c:if test="${CAT == 'BOOK'}">selected="selected"
+		</c:if>>도서검색</option>
+		<option value="MOVIE"
+		<c:if test="${CAT == 'MOVIE'}">selected="selected"
+		</c:if>>영화검색</option>
+		<option value="NEWS"
+		<c:if test="${CAT == 'NEWS'}">selected="selected"
+		</c:if>>뉴스검색</option>
+	</select>
 	<form>
-		<input name="search" placeholder="도서명을 입력후 enter....">
+		<input name="search" placeholder="${pHolder}를 입력후 enter....">
 	</form>
+</nav>
 	<section class="content_box">
-		<c:forEach var="BOOK" items="${BOOKS}">
-			<div>
-				<img src="${BOOK.image}">
-				<div class="content">
-					<p class="title">${BOOK.title}</p>
-					<a href="${BOOK.link}"> ${BOOK.title} </a>
-					<p class="desc">${BOOK.description}</p>
-					<p class="author">
-						<strong>저자 : </strong>${BOOK.author}
-					<p class="publisher">
-						<strong>출판사 : </strong>${BOOK.publisher}
-					</p>
-					<button class="insert">내책</button>
-				</div>
-			</div>
-		</c:forEach>
+	<%@ include file="/WEB-INF/views/book_list.jsp" %>
+	<%@ include file="/WEB-INF/views/movie_list.jsp" %>
+	<%@ include file="/WEB-INF/views/news_list.jsp" %>
 	</section>
 </body>
+<script>
+let category = document.querySelector("select[name='category']")
+
+category.addEventListener("change",(e)=>{
+	
+	let value = category.value
+	/* alert(value) */
+
+/* 	location.href= "${rootPath}/?category=" +value; */
+	location.href= "${rootPath}/naver/" +value;
+})
+
+
+</script>
 </html>
