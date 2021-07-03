@@ -12,28 +12,27 @@ import java.util.List;
 import org.json.simple.parser.ParseException;
 import org.springframework.stereotype.Service;
 
+import com.callor.book.controller.config.NaverQualifier;
 import com.callor.book.controller.config.NaverSecret;
 import com.callor.book.model.MovieDTO;
-import com.callor.book.service.NaverMovieService;
+import com.callor.book.service.NaverAbstractService;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
-
+//JsonParser는 google이어야
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@Service("naverMovieServiceV1")
-public class NaverMovieServiceImplV1 implements NaverMovieService {
+@Service(NaverQualifier.NAVER_MOVIE_SERVICE_V1)
+public class NaverMovieServiceImplV1 extends NaverAbstractService<MovieDTO> {
 	
 	
-	public String queryURL(String search) {
+	public String queryURL(String search) throws UnsupportedEncodingException {
 		String searchUTF8 = null;
-		try {
+		
 			searchUTF8 = URLEncoder.encode(search, "UTF-8");
-		} catch (UnsupportedEncodingException e) {
-			e.printStackTrace();
-		}
+		
 		StringBuilder queryURL = new StringBuilder();
 
 		queryURL.append(NaverSecret.NURL.MOVIE);
@@ -48,9 +47,8 @@ public class NaverMovieServiceImplV1 implements NaverMovieService {
 
 		return queryURL.toString();
 	}
-
-	
 	public String getJsonString(String queryURL) throws IOException {
+		
 		URL url = null;
 		HttpURLConnection httpConn = null;
 		url = new URL(queryURL);
@@ -80,16 +78,29 @@ public class NaverMovieServiceImplV1 implements NaverMovieService {
 		return sBuffer.toString();
 	}
 
+	/*
+	 * gSon 을 사용하여 json String 을 List<MovieDTO>로 변환하기
+	 * 
+	 */
 	public List<MovieDTO> getNaverList(String jsonString) throws ParseException {
-		log.debug("나는 ServiceV2");
-		JsonElement jSonElement = JsonParser.parseString(jsonString);
-		JsonElement oItems = jSonElement.getAsJsonObject().get("items");
+		log.debug("jsonString {} ", jsonString);
+
+//		element로 변환하기 
+		JsonElement jSonElement 
+			= JsonParser.parseString(jsonString);
+
+		JsonElement oItems 
+			= jSonElement.getAsJsonObject().get("items");
 
 		Gson gson = new Gson();
-		TypeToken<List<MovieDTO>> typeToken = new TypeToken<List<MovieDTO>>() {
-		};
+		
+		TypeToken<List<MovieDTO>> typeToken 
+			= new TypeToken<List<MovieDTO>>() { };
 
-		List<MovieDTO> movieList = gson.fromJson(oItems, typeToken.getType());
+		List<MovieDTO> movieList 
+			= gson.fromJson(oItems, typeToken.getType());
+		
+		
 		return movieList;
 	}
 }

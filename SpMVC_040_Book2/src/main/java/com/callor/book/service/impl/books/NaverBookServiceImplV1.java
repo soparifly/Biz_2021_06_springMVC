@@ -1,11 +1,6 @@
 package com.callor.book.service.impl.books;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,29 +11,35 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.springframework.stereotype.Service;
 
+import com.callor.book.controller.config.NaverQualifier;
 import com.callor.book.controller.config.NaverSecret;
 import com.callor.book.model.BookDTO;
-import com.callor.book.service.NaverBookService;
+import com.callor.book.service.NaverAbstractService;
 
 import lombok.extern.slf4j.Slf4j;
-
+/*
+ * NaverAbstractService 추상클래스를 상속받아 구현(된) 클래스
+ * 추상클래스에 사전 정의 된 jsonString() method 코드는
+ * 직접 작성하지 않고, 
+ * 사용할 수 있다.
+ * 
+ * 	jsonString()
+ * 
+ *  추상메서드는 반드시 구현해야한다
+ *  	queryURL, getNaverList()
+ *  
+ *	NaverAbstractService nService
+ *	=	new NaverServiceImplV1()
+ *
+ *  nService.queryURL()
+ *  nService.jsonString()
+ *  nService.getNaverList()
+ *  
+ */
 @Slf4j
-@Service("naverBookServiceV1")
-public class NaverBookServiceImplV1 implements NaverBookService {
-	/*
-	 * naver에 요청하기 bookURL + "?query=" + 검색 문자열
-	 * 
-	 */
-
-	// <정리>
-	// url을 만들기위해서 검색문자열을 encoder로 인코딩했고
-	//	문자열에 Stringvuilder 클래스를 사용해서 
-	//	"sql += " 대신에 사용하여 appender를 사용하여 문자열을 하나씩 추가시킴
-	// .toString을 이용해서 문자열화 하는것 
-
+@Service(NaverQualifier.NAVER_BOOK_SERVICE_V1)
+public class NaverBookServiceImplV1 extends NaverAbstractService<BookDTO> {
 	public String queryURL(String search) {
-
-		//		검색하고자 하는 문자열을 UTF-8로 인코딩
 		String searchUTF8 = null;
 
 		try {
@@ -61,86 +62,6 @@ public class NaverBookServiceImplV1 implements NaverBookService {
 
 		return queryURL.toString();
 	}
-
-	//	queryRUL 을 받아서 
-	@Override
-	public String getJsonString(String queryURL) throws IOException {
-		// TODO Auto-generated method stub
-
-		//		API를 통하여 다른 서버에 Request를 보낼때 사용할 객체
-		URL url = null;
-
-		//		Http 프로토콜을 통하여 다른 서버에 연결할때 사용할 객체
-		HttpURLConnection httpConn = null;
-		//			queryURL 주소를 Request 정보로 변환
-		url = new URL(queryURL);
-
-		httpConn = (HttpURLConnection) url.openConnection();
-
-		//			naver가 어떤 응답을 할것인지를 미리 확인하는 
-		//			코드를 요청한다
-		//			요청하는 method Get으로 설정하기
-		httpConn.setRequestMethod("GET");
-		//TODO
-		httpConn.setRequestProperty("X-Naver-Client-ID", NaverSecret.NAVER_CLIENT_ID);
-		httpConn.setRequestProperty("X-Naver-Client-Secret", NaverSecret.NAVER_CLIENT_SECRET);
-
-		int httpStatusCode = httpConn.getResponseCode();
-
-		//			naver로부터 데이터를 수신할 객체
-		InputStreamReader is = null;
-		if (httpStatusCode == 200) {
-
-			is = new InputStreamReader(httpConn.getInputStream());
-		} else {
-			is = new InputStreamReader(httpConn.getErrorStream());
-
-		}
-		//			is를 buffer에 연
-		BufferedReader buffer = null;
-		buffer = new BufferedReader(is);
-
-		/* StringBuilder, StringBuffer
-		 * 
-		 * String 형의 데이터 += 처럼
-		 * 사용할때 발생하는 메모리 leak, 성능저하 문제를 해결하기 위하여 탄생된 클래스
-		 * 
-		 * String 형의 데이터를 += gkaus 
-		 * ex ) 다음과 같은 코드를 반복하면
-		 * 
-		 * String str ="대한민국"
-		 * str += "Korea"
-		 * str += "Republic"
-		 * 
-		 * 내부적으로는 str변수를 생성, 제거, 생성, 제거,하는 코드가 반복적으로 수행된다
-		 * 
-		 * 이러한 현상이 반복되면 메모리에 문제가 발생할 수 있다
-		 * 그러한 문제를 해결하기위하여 탄생한 클래스
-		 * 
-		 * 겉으로 보기에는 두개 클래스 역할과 사용법이 똑같다
-		 * Stringbuilder는 singthread에서 최적화 되어있다
-		 * Stringbufferd는 multithread에서 안전하다
-		 *
-		 *
-		 */
-		StringBuffer sBuffer = new StringBuffer();
-		while (true) {
-			String reader = buffer.readLine();
-			if (reader == null) {
-				break;
-			}
-			sBuffer.append(reader);
-		}
-		log.debug("json {} ", sBuffer.toString());
-		return sBuffer.toString();
-	}
-
-	/*
-	 *네이버에서 받은 JsonString 을 parsing gkdu 
-	 * List<BookDTO>에 담아 return 하기
-	 * json-simple을 사용하여 parsing하기 
-	 * 
-	 */
 	@Override
 	public List<BookDTO> getNaverList(String jsonString) throws ParseException {
 		// TODO Auto-generated method stub

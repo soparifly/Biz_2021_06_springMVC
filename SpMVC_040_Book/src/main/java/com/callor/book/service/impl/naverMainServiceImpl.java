@@ -23,7 +23,7 @@ public class naverMainServiceImpl {
 	@Qualifier("naverBookServiceV2")
 	protected final NaverBookService nBookService;
 	
-	@Qualifier ("naverMovieSerivceV1")
+	@Qualifier ("naverMovieServiceV1")
 	protected final NaverMovieService nMovieService;
 	
 	public void naverGetData(String cat, String search, Model model)

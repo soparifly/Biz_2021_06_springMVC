@@ -37,9 +37,10 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 @Service("naverBookServiceV2")
-public class NaverBookServiceImplV2 extends NaverBookServiceImplV1{@Override
+public class NaverBookServiceImplV2 extends NaverBookServiceImplV1{
 	
 	
+	@Override
 //	gSon을 사용하여 jsonString을 Parsing하
 	public List<BookDTO> getNaverList(String jsonString) throws ParseException {
 	log.debug("나는 ServiceV2");
