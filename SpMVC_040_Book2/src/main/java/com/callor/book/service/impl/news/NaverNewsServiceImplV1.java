@@ -33,7 +33,7 @@ public class NaverNewsServiceImplV1 extends NaverAbstractService<NewsDTO> {
 	}
 
 	@Override
-	public List<NewsDTO> getNaverList(String jsonString) throws ParseException {
+	public List<NewsDTO> getNaverList(String jsonString) throws Exception {
 		//
 		JsonElement jSonElement = JsonParser.parseString(jsonString);
 

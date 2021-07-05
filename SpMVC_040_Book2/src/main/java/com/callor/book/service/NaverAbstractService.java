@@ -77,6 +77,6 @@ public abstract class NaverAbstractService<T> {
 		return sBuffer.toString();
 	}
 
-	public abstract List<T> getNaverList(String jsonString) throws ParseException;
+	public abstract List<T> getNaverList(String jsonString) throws Exception;
 
 }
