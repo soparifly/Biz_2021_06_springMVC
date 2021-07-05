@@ -28,35 +28,8 @@
 				</div>
 			</div>
 		</div>
-		<!-- </section> -->
 		<section id="main_sec">
 		<%@ include file="/WEB-INF/views/calender/eventcalender.jsp" %>
-<!-- 			<article id="main_art">
-				<h4>인기커스텀 목록 미리보기</h4>
-				<ol>
-					<li>미리보기</li>
-					<li>미리보기</li>
-					<li>미리보기</li>
-					<li>미리보기</li>
-					<li>미리보기</li>
-				</ol>
-			</article>
-			<article id="main_art2">
-				<h4>자유게시판 목록 미리보기</h4>
-				<ol>
-					<li>미리보기</li>
-					<li>미리보기</li>
-					<li>미리보기</li>
-					<li>미리보기</li>
-				</ol>
-			</article>
-			<article id="main_art3">
-				<h4>공지사항 목록 미리보기</h4>
-				<ol>
-					<li>미리보기</li>
-					<li>미리보기</li>
-				</ol>
-			</article> -->
 		</section>
 <%@ include file="/WEB-INF/views/include/include_footer.jsp"%>
 </body>

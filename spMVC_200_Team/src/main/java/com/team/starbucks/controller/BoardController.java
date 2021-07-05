@@ -13,20 +13,21 @@ import com.fasterxml.jackson.annotation.JacksonInject.Value;
 import com.team.starbucks.model.BoardDTO;
 import com.team.starbucks.service.BoardService;
 
+import lombok.RequiredArgsConstructor;
 import lombok.val;
-
+@RequiredArgsConstructor
 @RequestMapping(value = "/board")
 @Controller
 public class BoardController {
 	
-	@Qualifier
-	protected BoardService bdService;
+	@Qualifier("boardServiceV1")
+	protected final BoardService bdService;
 	
 	@RequestMapping(value = {"","/"}, method= RequestMethod.GET)
 	public String selectAll(Model model) {
 		List<BoardDTO> bdList = bdService.selectAll();
 		model.addAttribute("BOARD_LIST", bdList);
-		return "home";
+		return "board/list";
 	}
 	
 //	public String insert(@RequestParam("")) {

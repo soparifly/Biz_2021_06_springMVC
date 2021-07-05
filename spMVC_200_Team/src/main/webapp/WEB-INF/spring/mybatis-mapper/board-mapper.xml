@@ -5,7 +5,9 @@
   
  <mapper namespace="com.team.starbucks.dao.ext.BoardDao">
  
- 	<select id="selectAll"></select>
+ 	<select id="selectAll" resultType="boardDTO">
+ 	SELECT * FROM tbl_board	
+ 	</select>
  	<select id="findById"></select>
  	<insert id="insert"></insert>
  	<update id="update"></update>

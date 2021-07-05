@@ -1,6 +1,9 @@
 package com.team.starbucks.controller;
 
+import java.util.Locale;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -8,17 +11,13 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Controller
-@RequestMapping(value = "/custom")
-public class CostomController {
+@RequestMapping(value = "/publicnotice")
+public class NoticeController {
 
 	@RequestMapping(value = { "/", "" }, method = RequestMethod.GET)
-	public String costums() {
-		log.debug("Custom root");
-		return "custom/list";
+	public String home() {
+		log.info(" publicnotice root {}.");
+		return "publicnotice/list";
 	}
 
-	@RequestMapping(value = "/insert", method = RequestMethod.GET)
-	public String insert() {
-		return "custom/input";
-	}
 }
