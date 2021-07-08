@@ -5,10 +5,23 @@
   
  <mapper namespace="com.team.starbucks.dao.ext.CustomDao">
  
- 	<select id="selectAll"></select>
- 	<select id="findById"></select>
- 	<insert id="insert"></insert>
+ 	<select id="selectAll" resultType="CustomDTO">
+ 	SELECT * FROM tbl_custom
+ 	</select>
+ 	<select id="findById" resultType="CustomDTO">
+ 	SELECT menu_seq FROM tbl_custom
+ 	WHERE menu_seq = #{menu_seq}
+ 	</select>
+ 	<insert id="insert">
+ 	
+ 	
+ 	</insert>
  	<update id="update"></update>
  	<delete id="delete"></delete>
- 
+ 	
+	<update id="create_table">
+	
+	
+	</update>
+
  </mapper> 

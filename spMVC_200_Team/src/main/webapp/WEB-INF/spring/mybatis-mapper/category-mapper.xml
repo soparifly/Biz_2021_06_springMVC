@@ -13,7 +13,14 @@
 		SELECT menu_code FROM tbl_category
 		WHERE LEFT(menu_code,1) = '#{menu_code}';
 	</select>
+		
+	<select id="findBycode" resultType="CategoryDTO">
+		SELECT menu_code FROM tbl_category
+		WHERE LEFT(menu_code,1) = #{menu_code};
+	</select>
+	
 	<insert id="insert"></insert>
+	
 
 	<update id="update"></update>
 
