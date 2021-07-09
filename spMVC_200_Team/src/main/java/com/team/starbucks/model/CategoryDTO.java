@@ -15,7 +15,7 @@ import lombok.ToString;
 @Builder
 public class CategoryDTO {
 
-	private String menu_code;//
+	private Long menu_code;//
 	private String menu_name;//
 	private String menu_kinds;//
 

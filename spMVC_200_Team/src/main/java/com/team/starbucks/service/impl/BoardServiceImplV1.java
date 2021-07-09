@@ -3,6 +3,7 @@ package com.team.starbucks.service.impl;
 import java.io.File;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -20,6 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 public class BoardServiceImplV1 implements BoardService {
 
 	protected final BoardDao bdDao;
+	@Qualifier("fileServiceV1")
 	protected final FileService fService;
 
 	@Override

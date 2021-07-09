@@ -5,4 +5,6 @@ import com.team.starbucks.model.FileDTO;
 
 public interface FileDao extends GenericDao<FileDTO,String>{
 
+	public FileDTO findById(Long file_seq);
+
 }

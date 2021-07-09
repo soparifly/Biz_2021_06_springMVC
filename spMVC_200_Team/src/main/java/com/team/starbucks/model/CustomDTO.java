@@ -9,18 +9,15 @@ import lombok.ToString;
 
 @Getter
 @Setter
+@ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 @Builder
-public class BoardDTO {
-	private String board_seq;
-	private String board_writer;
+public class CustomDTO {
+	private Long menu_seq;
 	private String user_id;
-	private String file_seq;
-	private String board_title;//
-	private String board_content;//
-	private String board_like;//
-	private String board_date;//
-	private String board_time;//
+	private String menu_code;
+	private String menu_title;
+	private String menu_option;
+	private String menu_img;
 }

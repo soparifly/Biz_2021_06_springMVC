@@ -5,7 +5,7 @@
   
  <mapper namespace="com.team.starbucks.dao.ext.BoardDao">
  
- 	<select id="selectAll" resultType="boardDTO">
+ 	<select id="selectAll" resultType="BoardDTO">
  	SELECT * FROM tbl_board	
  	</select>
  	
@@ -14,15 +14,6 @@
  	WHERE board_seq = #{board_seq}
  	</select>
  	<insert id="insert">
- 	INSERT INTO tbl_board (board_code,
-board_content,
-board_date,
-board_img,
-board_like,
-board_time,
-board_title,
-board_writer
-user_id : String
  	</insert>
 
  	<update id="update"></update>

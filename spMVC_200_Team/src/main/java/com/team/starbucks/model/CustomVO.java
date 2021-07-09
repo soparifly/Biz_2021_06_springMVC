@@ -20,7 +20,4 @@ public class CustomVO {
 	private String menu_title;
 	private String menu_option;
 	private String menu_img;
-	
-	
-	
 }

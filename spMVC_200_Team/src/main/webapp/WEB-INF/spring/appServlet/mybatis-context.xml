@@ -23,7 +23,7 @@
 		<property name="dataSource" ref="ds" />
 		<property name="typeAliasesPackage"	
 		value="com.team.starbucks.model"/>
-		<property name="mapperLocations"	value="/WEB-INF/spring/mybatis-mapper/*-mapper.xml" />
+		<property name="mapperLocations" value="/WEB-INF/spring/mybatis-mapper/*-mapper.xml" />
 	</bean>
 	<!-- SessionTemplate -->
 	<bean class="org.mybatis.spring.SqlSessionTemplate">

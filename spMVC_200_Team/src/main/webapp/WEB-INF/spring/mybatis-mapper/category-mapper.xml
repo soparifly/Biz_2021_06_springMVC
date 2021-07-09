@@ -20,11 +20,7 @@
 	</select>
 	
 	<insert id="insert"></insert>
-	
-
 	<update id="update"></update>
-
-
 	<delete id="delete"></delete>
 
 </mapper> 
