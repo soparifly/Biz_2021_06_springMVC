@@ -18,6 +18,10 @@ public class FileServiceImplV2 extends FileServiceImplV1{
 	protected final String macPath;
 	@Override
 	public String fileUp(MultipartFile file) throws Exception {
+		String originFileName = file.getOriginalFilename();
+		if(originFileName == null || originFileName.isEmpty()) {
+			return "";
+		}
 		// TODO Auto-generated method stub
 		/*
 		 * 파일을 업로드할때 사용할 경로(Path)를 가져오기
@@ -44,7 +48,6 @@ public class FileServiceImplV2 extends FileServiceImplV1{
 				path.mkdirs();
 			}
 
-		String originFileName = file.getOriginalFilename();
 		String strUUID = UUID.randomUUID().toString();
 		strUUID += originFileName;
 		

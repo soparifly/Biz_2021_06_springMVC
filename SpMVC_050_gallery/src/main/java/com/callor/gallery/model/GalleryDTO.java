@@ -1,5 +1,7 @@
 package com.callor.gallery.model;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -26,5 +28,7 @@ public class GalleryDTO {
 	private String g_content; 	//내용
 	private String g_image;		//사진갤러리의 대표이미지
 	
-	
+//	Gallery와 연고나된 파일리스트를 담을 리스트 타입의 변수추
+// mapper에서 Collerction으로 채울데이
+List<FileDTO> fileList;	
 }

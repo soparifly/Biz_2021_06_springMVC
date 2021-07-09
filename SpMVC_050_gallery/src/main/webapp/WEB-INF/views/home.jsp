@@ -24,49 +24,27 @@ header {
 	border-bottom: 1px solid #333;
 	width: 100%;
 	background-color: white;
-	padding: 2px;
 }
 
 header h2 {
-	margin: 20px;
-	padding: 0px;
-	font-weight: 300;
+	font-weight: 500;
+	padding: 10px;
+	color: #D5DBB3;
 }
 
-#main_nav {
-	margin-top: 40px; padding : 2px;
-	height: 5vh;
-	padding: 2px;
-}
 
-nav#main_nav ul {
-	display: flex;
-	list-style: none;
-}
-
-nav#main_nav li {
-	padding: 7px;
-}
-
-nav#main_nav li:nth-last-of-type(3) {
-	text-align: right;
-}
-
-nav#main_nav li:hover {
-	cursor: pointer;
-	border-bottom: 2px solid gray;
-	transition: 0.6s;
-}
 
 body {
-	height: 100vh;
 	width: 100%;
+	bottom:0;
+	height: 100vh;
 }
 
 #main_sec {
 	dispaly: block;
 	background: #D5DBB3;
 	font-size: 14px;
+	text-align: center;
 }
 </style>
 </head>
@@ -88,6 +66,9 @@ body {
 			</c:when>
 			<c:when test="${BODY == 'GA-DETAIL'}">
 				<%@ include file="/WEB-INF/views/gallery/detail.jsp"%>
+			</c:when>
+			<c:when test="${BODY == 'GA-DETAIL-V2'}">
+				<%@ include file="/WEB-INF/views/gallery/detail2.jsp"%>
 			</c:when>
 			<c:when test="${BODY == 'JOIN'}">
 				<%@ include file="/WEB-INF/views/member/join.jsp"%>
@@ -127,7 +108,7 @@ body {
 						location.href = "${rootPath}/"
 					}
 					else if(menu.id === "login"){
-						location.href = "${rootPath}/member/login"
+						location.href = "${rootPath}/member/login/nav"
 					}
 				}
 			})

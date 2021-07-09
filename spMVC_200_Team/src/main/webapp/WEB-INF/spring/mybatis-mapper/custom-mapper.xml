@@ -9,19 +9,38 @@
  	SELECT * FROM tbl_custom
  	</select>
  	<select id="findById" resultType="CustomDTO">
- 	SELECT menu_seq FROM tbl_custom
+ 	SELECT * FROM tbl_custom
  	WHERE menu_seq = #{menu_seq}
  	</select>
  	<insert id="insert">
- 	
- 	
+ 	INSERT INTO tbl_custom(menu_seq, menu_code, menu_writer, menu_title, menu_img, menu_option) 
+ 	VALUES( #{menu_seq}, #{menu_code}, #{menu_writer}, #{menu_title}, #{menu_img}, #{menu_option} )
  	</insert>
- 	<update id="update"></update>
- 	<delete id="delete"></delete>
+ 	<update id="update">
+ 	
+ 	INSERT INTO tbl_custom(menu_seq, menu_code, menu_writer, menu_title, menu_img, menu_option) 
+ 	VALUES( #{menu_seq}, #{menu_code}, #{menu_writer}, #{menu_title}, #{menu_img}, #{menu_option} )
+	ON DUPLICATE KEY UPDATE
+	 	 menu_code=#{menu_code}, 
+	 	 menu_writer=#{menu_writer}, 
+	 	 menu_title=#{menu_title}, 
+	 	 menu_img=#{menu_img}, 
+	 	 menu_option=#{menu_option}
+ 	</update>
+ 	<delete id="delete">
+ 	DELETE FROM tbl_custom 
+ 	WHERE menu_seq = #{menu_seq}
+ 	</delete>
  	
 	<update id="create_table">
-	
-	
+	CREATE TABLE IF NOT EXISTS tbl_custom(
+	menu_seq BIGINT AUTO_INCREMENT PRIMARY KEY, 
+	menu_code BIGINT NOT NULL, 
+	menu_writer VARCHAR(50) NOT NULL, 
+	menu_title VARCHAR(125) NOT NULL, 
+	menu_img VARCHAR(256), 
+	menu_option VARCHAR(256)
+	)
 	</update>
 
  </mapper> 

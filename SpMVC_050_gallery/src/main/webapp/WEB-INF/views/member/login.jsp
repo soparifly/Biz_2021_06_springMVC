@@ -9,10 +9,25 @@
 		font-size: 20px;
 		padding: 2rem;
 	}
+	form#login_form{
+		display:flex;
+		margin: auto;
+		padding:auto;
+		height: 100vh;
+	}
+	#test {
+		margin:auto;
+		width: 100px;
+		height: 200px;
+	}
+	label{
+	align-items: left;
+	}
 	</style>
     <div class="msg login error">
     </div>
     <form method="POST" id="login_form">
+    	<div id="test">
 	    	<div>
 	    		<label>사용자 ID</label>
 	    		<input name="m_userid">
@@ -24,7 +39,8 @@
     		<div>
     			<button type="button" class="login">로그인</button>
     			<button type="button" class="join">회원가입</button>
-    		</div>	
+    		</div>
+    		</div>
     </form>
     <script>
     	let form =  document.querySelector("form#login_form")
@@ -77,6 +93,12 @@
     	msg_error.style.backgroundColor ="red"
     	msg_error.style.padding ="2rem"
     	*/
+    } else if (login_fail === "LOGIN_REQ"){
+    	
+    	msg_error.innerHTML="로그인이 필요한 서비스입니다 <br/>";
+    	msg_error.innerHTML="로그인을 해주세요 <br/>";
+
+    	msg_error.classList.add("view")
     }
     
     

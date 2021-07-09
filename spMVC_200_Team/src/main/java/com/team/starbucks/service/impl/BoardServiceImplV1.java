@@ -9,17 +9,18 @@ import org.springframework.web.multipart.MultipartFile;
 import com.team.starbucks.dao.ext.BoardDao;
 import com.team.starbucks.model.BoardDTO;
 import com.team.starbucks.service.BoardService;
+import com.team.starbucks.service.FileService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-
-@Slf4j
 @RequiredArgsConstructor
+@Slf4j
 @Service("boardServiceV1")
 public class BoardServiceImplV1 implements BoardService {
 
 	protected final BoardDao bdDao;
+	protected final FileService fService;
 
 	@Override
 	public List<BoardDTO> selectAll() {
@@ -29,16 +30,5 @@ public class BoardServiceImplV1 implements BoardService {
 		
 		return bdList;
 	}
-//	public String fileUp(MultipartFile file) {
-//		String fileUpPath = this.winPath;
-//		
-//		File path = new File(macPath);
-//		if(path.exists()) {
-//			fileUpPath = this.macPath;
-//			
-//		}
-		
-		
-//	}
 
 }
