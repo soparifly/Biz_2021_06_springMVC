@@ -9,9 +9,9 @@
 		SELECT * FROM tbl_category
 	</select>
 
-	<select id="findById" resultType="CategoryDTO">
-		SELECT menu_code FROM tbl_category
-		WHERE LEFT(menu_code,1) = '#{menu_code}';
+	<select id="findByMenukinds" resultType="CategoryDTO">
+		SELECT * FROM tbl_category
+		WHERE LEFT(menu_kinds,1) = #{menu_kinds};
 	</select>
 		
 	<select id="findBycode" resultType="CategoryDTO">

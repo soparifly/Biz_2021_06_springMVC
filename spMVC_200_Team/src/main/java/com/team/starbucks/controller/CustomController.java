@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.team.starbucks.model.CategoryDTO;
 import com.team.starbucks.model.CategoryVO;
@@ -43,11 +44,13 @@ public class CustomController{
 		return "custom/list";
 	}
 
-	@RequestMapping(value = "/insert", method = RequestMethod.GET)
-	public String insert(Model model,CategoryVO cateVO) {
+	@RequestMapping(value = "/input", method = RequestMethod.GET)
+	public String insert(@RequestParam("menukinds")int menu_kinds,Model model) {
 		
-			log.debug("cateVO {}",cateVO.toString());
-		
+			List<CategoryDTO> menukindsList = cuService.findByMenukinds(menu_kinds);
+			log.debug("munukindsList {}",menukindsList.toString());
+			model.addAttribute("KINDS", menukindsList);
+			
 		return "custom/input";
 	}
 }

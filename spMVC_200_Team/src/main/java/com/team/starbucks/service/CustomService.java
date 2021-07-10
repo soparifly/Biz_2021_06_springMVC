@@ -8,4 +8,5 @@ import com.team.starbucks.model.CustomDTO;
 public interface CustomService{
 
 	public List<CustomDTO> selectAll();
+	public List<CategoryDTO> findByMenukinds(int menu_kinds);
 }
