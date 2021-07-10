@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -33,23 +34,33 @@ public class CustomController{
 	@Qualifier("fileServiceV1")
 	protected final FileService fService;
 	
+	
 	@RequestMapping(value = { "/", "" }, method = RequestMethod.GET)
 	public String list(HttpSession session, Model model, CustomVO customVO) {
 		
 		 UserVO userVO = (UserVO) session.getAttribute("USER");
 		 List<CustomDTO> cuList = cuService.selectAll();
-		 
+		 model.addAttribute("CustomList", cuList);
 		log.debug("Custom root");
 		
 		return "custom/list";
 	}
 
 	@RequestMapping(value = "/input", method = RequestMethod.GET)
-	public String insert(Model model) {
+	public String insert1(@RequestParam("menukinds")int menu_kinds,Model model) {
+		
+		List<CategoryDTO> menukindsList = cuService.findByMenukinds(menu_kinds);
+		log.debug("munukindsList {}",menukindsList.toString());
+		model.addAttribute("KINDS", menukindsList);
+		
+		model.addAttribute("BODY", "CUSTOM-INPUT");
+		
 		return "custom/input";
+		
+		
 	}
-	@RequestMapping(value = "/input", method = RequestMethod.POST)
-	public String insert(@RequestParam("menukinds")Integer menu_kinds,Model model) {
+	@RequestMapping(value = "/input/{url}", method = RequestMethod.POST)
+	public String insert(@RequestParam("menukinds")int menu_kinds,Model model) {
 		
 		List<CategoryDTO> menukindsList = cuService.findByMenukinds(menu_kinds);
 		log.debug("munukindsList {}",menukindsList.toString());

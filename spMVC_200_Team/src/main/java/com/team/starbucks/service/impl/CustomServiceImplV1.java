@@ -2,6 +2,7 @@ package com.team.starbucks.service.impl;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
@@ -59,6 +60,10 @@ public class CustomServiceImplV1 implements CustomService {
 		log.debug("bsList {} ", bsList.toString());
 		return bsList;
 	}
-
+	@Autowired
+	public int create_table(String dumy) {
+		return cusDao.create_table();
+	}
+	
 
 }

@@ -15,20 +15,22 @@
 	<%@ include file="/WEB-INF/views/include/include_header.jspf"%>
 	<fieldset id="custom">
 		<h1 id="costom">커스텀게시판</h1>
-			<div class="btn_box">
-			<button class="btn_insert menu">메뉴 등록</button>
-			</div>
+		<div class="btn_box">
+			<button class="btn_insert">메뉴 등록</button>
+		</div>
 		<table id="customlist">
 			<c:choose>
-				<c:when test="${empty CATELIST}">
+				<c:when test="${empty CustomList}">
 					<td colspan="2">데이터없음</td>
 				</c:when>
 				<c:otherwise>
 					<c:forEach
-						items="${CATELIST}"
-						var="CATE">
-						<tr date-catecode="${cate_code}">
-							<td>${CATE.cate_code}</td>
+						items="${CustomList}"
+						var="CUS">
+						<tr>
+							<td>${CUS.menu_code}</td>
+							<td>${CUS.menu_title}</td>
+							<td>${CUS.user_id}</td>
 						</tr>
 					</c:forEach>
 				</c:otherwise>
@@ -39,15 +41,9 @@
 </body>
 </html>
 <script>
-let menu_code = document.querySelector("table#customlist")
-	if(menu_code){
-		cate_code.addEventListener("click",(e)=>{
-		let td = e.target
-		if(td.tagName ==="TD"){   
-			let tr = td.closest("TR")
-			let menu_code = tr.dataset.catecode
-			alert(cate_code)
-				}
-			})
-		}
+let menu_input = document.querySelector("button.btn_insert")
+		menu_input.addEventListener("click",()=>{
+			location.href = "${rootPath}/custom/input"+"?menukinds=1"
+	})
+	
 </script>

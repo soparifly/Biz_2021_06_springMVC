@@ -14,7 +14,7 @@
  		SELECT 
 	 		C.menu_seq AS menu_seq,
 	 		C.menu_code AS menu_code,
-	 		C.menu_writer AS menu_writer,
+	 		C.user_id AS user_id,
 	 		C.menu_title AS menu_title,
 	 		C.menu_img AS menu_img,
 	 		C.menu_option AS menu_option,
@@ -32,12 +32,12 @@
 	<resultMap type="CustomDTO" id=""></resultMap>
  	
  	<insert id="insert" parameterType="CustomDTO">
- 	INSERT INTO tbl_custom(menu_seq, menu_code, menu_writer, menu_title, menu_img, menu_option) 
+ 	INSERT INTO tbl_custom(menu_seq, menu_code, user_id, menu_title, menu_img, menu_option) 
  	VALUES( #{menu_seq}, #{menu_code}, #{menu_writer}, #{menu_title}, #{menu_img}, #{menu_option} )
  	</insert>
  	<update id="update">
  	INSERT INTO tbl_custom(
- 	menu_seq, menu_code, menu_writer, menu_title, menu_img, menu_option) 
+ 	menu_seq, menu_code, user_id, menu_title, menu_img, menu_option) 
  	VALUES( #{menu_seq}, #{menu_code}, #{menu_writer}, #{menu_title}, #{menu_img}, #{menu_option} )
 	ON DUPLICATE KEY UPDATE
 	 	 menu_code=#{menu_code}, 
@@ -54,7 +54,7 @@
 	CREATE TABLE IF NOT EXISTS tbl_custom(
 	menu_seq BIGINT AUTO_INCREMENT PRIMARY KEY, 
 	menu_code BIGINT NOT NULL, 
-	menu_writer VARCHAR(50) NOT NULL, 
+	user_id VARCHAR(50) NOT NULL, 
 	menu_title VARCHAR(125) NOT NULL, 
 	menu_img VARCHAR(256), 
 	menu_option VARCHAR(256)
