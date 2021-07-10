@@ -45,12 +45,16 @@ public class CustomController{
 	}
 
 	@RequestMapping(value = "/input", method = RequestMethod.GET)
-	public String insert(@RequestParam("menukinds")int menu_kinds,Model model) {
-		
-			List<CategoryDTO> menukindsList = cuService.findByMenukinds(menu_kinds);
-			log.debug("munukindsList {}",menukindsList.toString());
-			model.addAttribute("KINDS", menukindsList);
-			
+	public String insert(Model model) {
 		return "custom/input";
 	}
+	@RequestMapping(value = "/input", method = RequestMethod.POST)
+	public String insert(@RequestParam("menukinds")Integer menu_kinds,Model model) {
+		
+		List<CategoryDTO> menukindsList = cuService.findByMenukinds(menu_kinds);
+		log.debug("munukindsList {}",menukindsList.toString());
+		model.addAttribute("KINDS", menukindsList);
+		
+	return "custom/input";
+}
 }
