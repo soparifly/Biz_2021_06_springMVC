@@ -44,21 +44,7 @@ public class CustomController {
 
 		return "custom/list";
 	}
-//
-//	@RequestMapping(value = "/input", method = RequestMethod.GET)
-//	public String insert1() {
-//		return "custom/input";
-//	}
-//
-//	@RequestMapping(value = "/input/{url}", method = RequestMethod.POST)
-//	public String insert(@RequestParam("menukinds") int menu_kinds, Model model) {
-//
-//		List<CategoryDTO> menukindsList = cuService.findByMenukinds(menu_kinds);
-//		log.debug("munukindsList {}", menukindsList.toString());
-//		model.addAttribute("KINDS", menukindsList);
-//
-//		return "custom/input";
-//	}
+
 	@RequestMapping(value = "/input", method = RequestMethod.GET)
 	public String base1(Model model) {
 		List<CategoryDTO> menukindsList = cuService.findBybase1();
@@ -66,5 +52,33 @@ public class CustomController {
 		model.addAttribute("BASE1", menukindsList);
 		return "custom/input";
 		
+	}
+	@RequestMapping(value = "/input/base1", method = RequestMethod.GET)
+	public String insert(@RequestParam("menukinds") int menu_kinds, Model model) {
+			List<CategoryDTO> menukindsList = cuService.findByMenukinds(menu_kinds);
+			log.debug("munukindsList {}", menukindsList.toString());
+			model.addAttribute("FIELDSET", "BASE1-INPUT");
+			model.addAttribute("KINDS", menukindsList);
+			return "custom/base2";
+	}
+	@RequestMapping(value = "/insert", method=RequestMethod.GET)
+	public String saveMenu(Model model,@RequestParam("menucode")int menu_code) {
+			CategoryDTO cateDto = cuService.findByMenuName(menu_code);
+			log.debug(cateDto.toString());
+			model.addAttribute("FIELDSET", "BASE2-INPUT");
+			model.addAttribute("CHOISEMENU", cateDto);
+		return "custom/input";
+	}
+	@RequestMapping(value = "/insert", method=RequestMethod.POST)
+	public int saveMenu(@RequestParam("menucode")int menu_code, CustomVO cuVO) {
+		cuVO.builder()
+		.menu_code(menu_code)
+		.menu_option(cuVO.getMenu_option())
+		.menu_title(cuVO.getMenu_title())
+		.menu_img(cuVO.getMenu_img())
+		.user_id(cuVO.getUser_id())
+		.build();
+		log.debug(cuVO.toString());
+		return cuService.insert(cuVO);
 	}
 }
