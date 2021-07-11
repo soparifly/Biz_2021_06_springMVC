@@ -27,3 +27,17 @@
 				<label>추가된 퍼스널옵션</label><input type="text">
 			</div>
 </form>
+<script>
+let base1 = document.querySelector("table#ch1")
+if(base1){
+	base1.addEventListener("click",(e)=>{
+			let td = e.target
+			if(td.tagName === "TD"){
+					let tr = td.closest("TR")
+					let menucode = tr.dataset.menucode
+					alert(menucode)
+			}
+		})
+}
+
+</script>

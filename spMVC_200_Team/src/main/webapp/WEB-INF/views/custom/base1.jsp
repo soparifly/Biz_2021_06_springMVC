@@ -13,29 +13,35 @@
 #bs1 {
 	list-style: none;
 	display: flex;
-	float:left;	
+	float: left;
 	margin: 3px auto;
 	padding: 3px auto;
 }
-#bs1 li:hover{
-	cursor:pointer;
+
+#bs1 td:hover {
+	cursor: pointer;
 	outline: 1px dotted #aaa;
 	transition: 0.3s
 }
 </style>
-<c:choose>
-	<c:when test="${empty BASE1}">
-		<ul>
-			<li>데이터 없음</li>
-		</ul>
-	</c:when>
-	<c:otherwise>
-		<c:forEach
-			items="${BASE1}"
-			var="BS">
-			<ul id="bs1">
-				<li>${BS.menu_name}</li>
-			</ul>
-		</c:forEach>
-	</c:otherwise>
-</c:choose>
+<form id="">
+<table id="ch1">
+	<c:choose>
+		<c:when test="${empty BASE1}">
+				<li>데이터 없음</li>
+		</c:when>
+		<c:otherwise>
+			<c:forEach
+				items="${BASE1}"
+				var="BS">
+				<tr
+					id="bs1"
+					data-menucode="${BS.menu_code}">
+					<td>${BS.menu_name}</td>
+				</tr>
+			</c:forEach>
+		</c:otherwise>
+	</c:choose>
+</table>
+</form>
+
