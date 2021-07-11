@@ -17,7 +17,7 @@
 </style>
 <fieldset>
 	<form
-		method="POST"
+		method="GET"
 		id="saveMenu">
 		<legend>커스텀등록</legend>
 		<section>
@@ -31,11 +31,7 @@
 							<c:forEach
 								items="${BASE1}"
 								var="BS">
-								<tr
-									id="bs1"
-									data-menucode="${BS.menu_code}">
-									<td>${BS.menu_name}</td>
-								</tr>
+									<button value="${BS.menu_kinds}" type="submit">${BS.menu_name}</button>
 							</c:forEach>
 						</c:otherwise>
 					</c:choose>
@@ -53,8 +49,9 @@
 								var="BS">
 								<tr
 									id="bs1"
-									data-menucode="${BS.menu_code}">
-									<td>${BS.menu_name}</td>
+									data-menucode="${BS.menu_code}"
+									>
+									<td onclick="bsList();">${BS.menu_name}</td>
 								</tr>
 							</c:forEach>
 						</c:otherwise>
@@ -80,7 +77,9 @@
 	<div id="result"></div>
 </fieldset>
 <script>
-
-
+	function menubs1(){
+		let bs1 = document.getElementById("bs1").value
+		alert(document.getElementId("kinds_${BS.menu_kinds}").value);
+	}
 </script>
 

@@ -1,5 +1,6 @@
 package com.team.starbucks.controller;
 
+import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -83,16 +84,12 @@ public class CustomController {
 		List<CategoryDTO> allCate = cuService.findBybase1();
 		log.debug(" allCate {}", allCate.toString());
 		model.addAttribute("BASE1", allCate);
-//
-//		
-//		List<CategoryDTO> menukindsList = cuService.findByMenukinds(cateVO.getMenu_kinds());
-//		log.debug("munukindsList {}", menukindsList.toString());
-//		model.addAttribute("KINDS", menukindsList);
-//
-//		CategoryDTO cateDto = cuService.findByMenuName(cateVO.getMenu_code());
-//		log.debug(cateDto.toString());
-//		model.addAttribute("CHOISEMENU", cateDto);
-
+		
+		for(int i = 0; i< allCate.size(); i++) {
+			log.debug("검색된메뉴 {}",cuService.findByMenukinds(i));
+			List<CategoryDTO> onekinds = cuService.findByMenukinds(i);
+			log.debug("oneKinds {}",onekinds.toString());
+			}
 		return "custom/test";
 	}
 
