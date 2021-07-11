@@ -17,6 +17,6 @@ public class CategoryDTO {
 
 	private Long menu_code;//
 	private String menu_name;//
-	private String menu_kinds;//
+	private int menu_kinds;//
 
 }

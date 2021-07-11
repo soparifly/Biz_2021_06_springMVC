@@ -3,6 +3,7 @@ package com.callor.gallery.service.impl;
 import java.io.File;
 import java.util.UUID;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -12,12 +13,12 @@ import lombok.RequiredArgsConstructor;
 @Service("fileServiceV2")
 public class FileServiceImplV2 extends FileServiceImplV1{
 
-	
 //	 file - context.xml에 설정된 변수값 가져오기
 	protected final String winPath;	
 	protected final String macPath;
 	@Override
 	public String fileUp(MultipartFile file) throws Exception {
+		
 		String originFileName = file.getOriginalFilename();
 		if(originFileName == null || originFileName.isEmpty()) {
 			return "";

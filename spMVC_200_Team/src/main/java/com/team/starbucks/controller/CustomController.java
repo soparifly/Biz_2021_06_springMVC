@@ -27,45 +27,44 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Controller
 @RequestMapping(value = "/custom")
-public class CustomController{
+public class CustomController {
 
 	@Qualifier("customServiceV1")
 	protected final CustomService cuService;
 	@Qualifier("fileServiceV1")
 	protected final FileService fService;
-	
-	
+
 	@RequestMapping(value = { "/", "" }, method = RequestMethod.GET)
 	public String list(HttpSession session, Model model, CustomVO customVO) {
-		
-		 UserVO userVO = (UserVO) session.getAttribute("USER");
-		 List<CustomDTO> cuList = cuService.selectAll();
-		 model.addAttribute("CustomList", cuList);
+
+		UserVO userVO = (UserVO) session.getAttribute("USER");
+		List<CustomDTO> cuList = cuService.selectAll();
+		model.addAttribute("CustomList", cuList);
 		log.debug("Custom root");
-		
+
 		return "custom/list";
 	}
-
+//
+//	@RequestMapping(value = "/input", method = RequestMethod.GET)
+//	public String insert1() {
+//		return "custom/input";
+//	}
+//
+//	@RequestMapping(value = "/input/{url}", method = RequestMethod.POST)
+//	public String insert(@RequestParam("menukinds") int menu_kinds, Model model) {
+//
+//		List<CategoryDTO> menukindsList = cuService.findByMenukinds(menu_kinds);
+//		log.debug("munukindsList {}", menukindsList.toString());
+//		model.addAttribute("KINDS", menukindsList);
+//
+//		return "custom/input";
+//	}
 	@RequestMapping(value = "/input", method = RequestMethod.GET)
-	public String insert1(@RequestParam("menukinds")int menu_kinds,Model model) {
-		
-		List<CategoryDTO> menukindsList = cuService.findByMenukinds(menu_kinds);
-		log.debug("munukindsList {}",menukindsList.toString());
-		model.addAttribute("KINDS", menukindsList);
-		
-		model.addAttribute("BODY", "CUSTOM-INPUT");
-		
+	public String base1(Model model) {
+		List<CategoryDTO> menukindsList = cuService.findBybase1();
+		log.debug("menuKinds{}", menukindsList.toString());
+		model.addAttribute("BASE1", menukindsList);
 		return "custom/input";
 		
-		
 	}
-	@RequestMapping(value = "/input/{url}", method = RequestMethod.POST)
-	public String insert(@RequestParam("menukinds")int menu_kinds,Model model) {
-		
-		List<CategoryDTO> menukindsList = cuService.findByMenukinds(menu_kinds);
-		log.debug("munukindsList {}",menukindsList.toString());
-		model.addAttribute("KINDS", menukindsList);
-		
-	return "custom/input";
-}
 }
