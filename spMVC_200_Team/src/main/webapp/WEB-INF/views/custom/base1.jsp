@@ -29,7 +29,7 @@
 <table id="ch1">
 	<c:choose>
 		<c:when test="${empty BASE1}">
-				<li>데이터 없음</li>
+			<div></div>
 		</c:when>
 		<c:otherwise>
 			<c:forEach

@@ -34,16 +34,18 @@
 			<input name="menu_name">
 			<label>추가된 퍼스널옵션</label>
 			<input name="menu_option">
-			<button
-				type="button"
+			
+			<button	type="button"
 				class="save">저장</button>
 		</div>
 	</form>
+<input id="name" onkeyup="printName()"/>
+<div id="result"></div>
 </fieldset>
 <script>
-		document.querySelector("form#saveMenu").addEventListener("click",(e)=>{
-			let target = e.target
-			if(target.tagName === "BUTTON")
-				location.href = "${rootPath}/custom/insert";
-		})
-	</script>
+	function printName(){
+		const name = document.getElementById('name').value
+		document.getElementById("result").innerText = name;
+	}
+</script>
+
