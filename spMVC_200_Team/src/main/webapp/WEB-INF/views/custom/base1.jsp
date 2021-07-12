@@ -8,7 +8,6 @@
 <c:set
 	var="rootPath"
 	value="${pageContext.request.contextPath}" />
-<!DOCTYPE html>
 <style>
 #bs1 {
 	list-style: none;
