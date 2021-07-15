@@ -10,6 +10,9 @@ public interface FileService{
 	public String fileUp(MultipartFile file) throws Exception;
 	
 //	다수의 파일을 업로드하고 파일 이름들을 retrun 
-	public List<String> filesUp(MultipartHttpServletRequest files)throws Exception ;
+	public List<String> filesUp(MultipartHttpServletRequest files) throws Exception;
+	
+//  첨부된 파일을 삭제하기 위한 메서드
+	public int delete(String imgFileName);
 	
 }

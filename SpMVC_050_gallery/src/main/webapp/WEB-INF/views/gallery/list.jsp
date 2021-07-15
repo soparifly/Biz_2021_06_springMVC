@@ -47,6 +47,7 @@ a:link:hover {
 	cursor: pointer;
 }
 </style>
+<%@ include file="/WEB-INF/views/include/include_gallery_search.jspf"%>
 <c:forEach
 	items="${GALLERYS}"
 	var="GALLERY"
@@ -67,10 +68,11 @@ a:link:hover {
 		<div id="text">
 			<h3>
 				<a href="${rootPath}/gallery/detail2/${GALLERY.g_seq}">
-					${GALLERY.g_subject} </a>
+					${GALLERY.g_subject}(${GALLERY.g_seq})</a>
 			</h3>
 			<p>${GALLERY.g_content}</p>
 		</div>
 	</div>
 
 </c:forEach>
+<%@ include file="/WEB-INF/views/include/include_page_nav.jspf" %>

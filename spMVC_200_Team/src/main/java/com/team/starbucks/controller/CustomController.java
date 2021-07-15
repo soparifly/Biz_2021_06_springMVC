@@ -1,22 +1,19 @@
 package com.team.starbucks.controller;
 
-import java.util.Iterator;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.team.starbucks.model.CategoryDTO;
-import com.team.starbucks.model.CategoryVO;
 import com.team.starbucks.model.CustomDTO;
-import com.team.starbucks.model.CustomVO;
 import com.team.starbucks.model.UserVO;
 import com.team.starbucks.service.CustomService;
 import com.team.starbucks.service.FileService;
@@ -36,7 +33,7 @@ public class CustomController {
 	protected final FileService fService;
 
 	@RequestMapping(value = { "/", "" }, method = RequestMethod.GET)
-	public String list(HttpSession session, Model model, CustomVO customVO) {
+	public String list(HttpSession session, Model model, CustomDTO customDTO) {
 
 		UserVO userVO = (UserVO) session.getAttribute("USER");
 		List<CustomDTO> cuList = cuService.selectAll();
@@ -55,21 +52,16 @@ public class CustomController {
 	}
 
 	@RequestMapping(value = "/input2", method = RequestMethod.GET)
-		public String insert2(@RequestParam("menukinds") int menu_kinds,Model model) {
- 		List<CategoryDTO> menukindsList = cuService.findByMenukinds(menu_kinds);
+	public String insert2(@RequestParam("menukinds") int menu_kinds, Model model) {
+		List<CategoryDTO> menukindsList = cuService.findByMenukinds(menu_kinds);
 		log.debug("munukindsList {}", menukindsList.toString());
 		model.addAttribute("KINDS", menukindsList);
 		return "custom/input2";
 	}
 
-//	@RequestMapping(value = "/save", method = RequestMethod.GET)
-//	public String saveMenu(Model model, @RequestParam("menucode") int menu_code) {
-//	
-//		return "custom/input";
-//	}
-	
+
 	@RequestMapping(value = "/save", method = RequestMethod.GET)
-	public String saveMenu(@RequestParam("menucode") int menu_code,Model model) {
+	public String saveMenu(@RequestParam("menucode") int menu_code, Model model) {
 		CategoryDTO cateDto = cuService.findByMenuName(menu_code);
 		model.addAttribute("CHOISEMENU", cateDto);
 		log.debug(cateDto.toString());
@@ -77,29 +69,20 @@ public class CustomController {
 	}
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public String saveMenu(@RequestParam("menucode") Long menu_code,CustomVO cuVO,Model model) {
+	public String saveMenu(@RequestParam("menucode") Long menu_code, CustomDTO cuDTO, Model model, MultipartFile one_file)
+			throws Exception {
 		log.debug(menu_code + "");
 		Long menu_seq = 0L;
-		cuVO.setMenu_code(menu_code);
-		
-		log.debug(cuVO.toString());
-		cuService.insert(cuVO);
-		
+		cuDTO.setMenu_seq(menu_seq);
+		cuDTO.setMenu_code(menu_code);
+		log.debug("갤러리 정보 {}", cuDTO.toString());
+		log.debug("싱글 파일 {}", one_file.getOriginalFilename());
+		cuService.input(cuDTO, one_file);
 		return "redirect:/custom";
 	}
-
-//	@RequestMapping(value = "/test", method = RequestMethod.GET)
-//	public String dumy(Model model) {
-//		List<CategoryDTO> allCate = cuService.findBybase1();
-//		log.debug(" allCate {}", allCate.toString());
-//		model.addAttribute("BASE1", allCate);
-//
-//		for (int i = 0; i < allCate.size(); i++) {
-//			log.debug("검색된메뉴 {}", cuService.findByMenukinds(i));
-//			List<CategoryDTO> onekinds = cuService.findByMenukinds(i);
-//			log.debug("oneKinds {}", onekinds.toString());
-//		}
-//		return "custom/test";
-//	}
+	
 
 }
+
+
+

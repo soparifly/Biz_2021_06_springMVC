@@ -6,7 +6,13 @@
 <mapper namespace="com.callor.gallery.persistance.ext.FileDao">
 
 	<select id="selectAll"></select>
-	<select id="findById"></select>
+	<select id="findById" resultType="FileDTO">
+		
+		SELECT * FROM tbl_files
+		WHERE file_seq =#{file_seq}
+	
+	</select>
+	
 	<!-- 개별적으로 한 개 데이터씩 Insert 수행 -->
 	<insert id="insert" parameterType="FileDTO">
 		INSERT INTO tbl_files
@@ -64,7 +70,11 @@
 		file_upname = f_upname
 	</insert>
 	<update id="update"></update>
-	<delete id="delete"></delete>
+	<delete id="delete">
+		DELETE FROM tbl_files
+		WHERE file_seq = #{file_seq}
+	
+	</delete>
 
 	<update id="create_table">
 		create table IF NOT EXISTS tbl_files(
@@ -75,6 +85,9 @@
 		file_original
 		VARCHAR(256) NOT NULL,
 		file_upname VARCHAR(256) NOT NULL
+		CONSTRAINT FOREIGN KEY (file_seq)
+		REPERENCES tbl_gallery(g_Seq)
+		ON DELETE CACADE 
 		)
 	</update>
 

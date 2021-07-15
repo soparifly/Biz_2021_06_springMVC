@@ -15,6 +15,11 @@
 		<level value="DEBUG" additivity="false" />
 	</logger>
 	<logger name="com.callor.gallery.service">
+
+		<level value="DEBUG" additivity="false" />
+	</logger>
+	<logger name="com.callor.gallery.persistance">
+
 		<level value="DEBUG" additivity="false" />
 	</logger>
 

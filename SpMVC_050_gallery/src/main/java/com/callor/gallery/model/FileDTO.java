@@ -7,12 +7,14 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@ToString
 public class FileDTO {
 	private Long file_seq;//	BIGINT	AUTO_INCREMENT	PRIMARY KEY
 	private Long file_gseq;//	BIGINT	NOT NULL	

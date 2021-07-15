@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.team.starbucks.model.BoardDTO;
-import com.team.starbucks.model.BoardVO;
 import com.team.starbucks.model.UserVO;
 import com.team.starbucks.service.BoardService;
 

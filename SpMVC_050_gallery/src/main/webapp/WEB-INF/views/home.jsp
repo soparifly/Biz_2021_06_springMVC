@@ -13,6 +13,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://kit.fontawesome.com/a0b991b540.js" crossorigin="anonymous"></script>
 <style>
 * {
 	padding: 0;
