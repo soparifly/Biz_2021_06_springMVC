@@ -35,28 +35,33 @@ public class CustomController {
 	@RequestMapping(value = { "/", "" }, method = RequestMethod.GET)
 	public String list(HttpSession session, Model model, CustomDTO customDTO) {
 
-		UserVO userVO = (UserVO) session.getAttribute("USER");
 		List<CustomDTO> cuList = cuService.selectAll();
+		model.addAttribute("BODY", "CUSTOM_LIST");
 		model.addAttribute("CustomList", cuList);
 		log.debug("Custom root");
-
-		return "custom/list";
+		return "home";
 	}
 
 	@RequestMapping(value = "/input", method = RequestMethod.GET)
 	public String insert(Model model) {
 		List<CategoryDTO> menukindsList = cuService.findBybase1();
 		log.debug("menuKinds{}", menukindsList.toString());
+		
+		model.addAttribute("BODY", "INPUT-HOME");
 		model.addAttribute("BASE1", menukindsList);
-		return "custom/input";
+//		return "custom/input";
+		return "home";
 	}
+	
 
 	@RequestMapping(value = "/input2", method = RequestMethod.GET)
 	public String insert2(@RequestParam("menukinds") int menu_kinds, Model model) {
 		List<CategoryDTO> menukindsList = cuService.findByMenukinds(menu_kinds);
 		log.debug("munukindsList {}", menukindsList.toString());
+		model.addAttribute("BODY", "INPUT-KINDS");
 		model.addAttribute("KINDS", menukindsList);
-		return "custom/input2";
+//		return "custom/input2";
+		return "home";
 	}
 
 	//	@RequestMapping(value = "/save", method = RequestMethod.GET)
@@ -68,9 +73,11 @@ public class CustomController {
 	@RequestMapping(value = "/save", method = RequestMethod.GET)
 	public String saveMenu(@RequestParam("menucode") int menu_code, Model model) {
 		CategoryDTO cateDto = cuService.findByMenuName(menu_code);
+		model.addAttribute("BODY", "INPUT-SAVE");
 		model.addAttribute("CHOISEMENU", cateDto);
 		log.debug(cateDto.toString());
-		return "custom/save";
+//		return "custom/save";
+		return "home";
 	}
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)

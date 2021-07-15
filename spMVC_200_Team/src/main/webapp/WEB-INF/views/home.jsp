@@ -10,48 +10,86 @@
 	value="${pageContext.request.contextPath}" />
 <title>HOME : STARBUCKS CUSTOM</title>
 <style>
-@media screen and (max-width:768px) {
-	body {
-	 * {
-		margin: 0;
-		padding: 0;
-		box-sizing: border-box;
-	}
-	header {
-		background-color: green;
-		text-align: center;
-	}
-	h1 {
-		padding-top: 10px;
-		color: white;
-		text-shadow: 1px 2px 0px gray;
-	}
-	div.images {
-		display: flex;
-		animation: myslide 20s linear infinite;
-	}
-	 @keyframes myslide{
-        0%{
-        transform: translateX(0);
-        }
-        100%{
-        transform: translateX(calc(-500px*5));
-        }
-      }
-	}
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
 
+header {
+	background-color: green;
+	text-align: center;
+}
 
+h1 {
+	font-size: 8rem;
+	padding-top: 10px;
+	color: white;
+	text-shadow: 5px 5px 6px 7px #aaa;
+	height: 40%;
+}
+
+#main_sec {
+	border: 2px solid red;
+}
+
+div.images {
+	display: flex;
+	animation: myslide 20s linear infinite;
+}
 </style>
 </head>
-<body>	
-<%@ include file = "/WEB-INF/views/include/include_header.jspf" %>
-		<c:if test="${BODY eq 'CUSTOM_LIST'}">
-			<%@ include file="/WEB-INF/views/custom/list.jsp" %>
-		</c:if>
-		<c:if test="${BODY eq 'JOIN'}">
-			<%@ include file="/WEB-INF/views/member/join.jsp" %>
-		</c:if>
-		
+<body>
+	<header id="home_header">
+		<h1 id="h1">STARBUCKS CUSTOM</h1>
+	</header>
+	<%@ include file="/WEB-INF/views/include/include_nav.jspf"%>
+	<section id="main_sec">
+	<c:choose>
+	<c:when test="${BODY eq 'CUSTOM_LIST'}">	
+			<%@ include file="/WEB-INF/views/custom/list.jsp"%>
+	</c:when>
+	<c:when test="${BODY eq 'INPUT-HOME'}">	
+			<%@ include file="/WEB-INF/views/custom/input.jsp"%>
+	</c:when>
+	<c:when test="${BODY eq 'INPUT-KINDS'}">	
+			<%@ include file="/WEB-INF/views/custom/input2.jsp"%>
+	</c:when>
+	<c:when test="${BODY eq 'INPUT-SAVE'}">	
+			<%@ include file="/WEB-INF/views/custom/save.jsp"%>
+	</c:when>
+	<c:when test="${BODY eq 'JOIN'}">	
+			<%@ include file="/WEB-INF/views/member/join.jsp"%>
+	</c:when>
+		<c:otherwise >
 		<%@ include file="/WEB-INF/views/include/include_footer.jspf"%>
+		</c:otherwise>
+	</c:choose>
+	</section>
 </body>
+<script>
+	var rootPath = "${rootPath}";
+	document.addEventListener("DOMContentLoaded", () => {
+		  const nav = document.querySelector("nav#main_nav");
+
+		  nav.addEventListener("click", (e) => {
+		    let tagName = e.target.tagName;
+		    let urlPath = `${rootPath}`;
+		    if (tagName === "LI") {
+		      let menuText = e.target.textContent;
+		      if (menuText === "HOME") {
+		        urlPath += "/";
+		      } else if (menuText === "CUSTOM") {
+		        urlPath += "/custom";
+		      } else if (menuText === "BOARD") {
+		        urlPath += "/board";
+		      } else if (menuText === "LOGIN") {
+		        urlPath += "/member";
+		      } else if (menuText === "JOIN") {
+		        urlPath += "/member/join";
+		      }
+		      location.href = urlPath;
+		    }
+		  });
+		});
+	</script>

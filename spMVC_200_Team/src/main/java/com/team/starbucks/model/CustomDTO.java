@@ -21,7 +21,6 @@ public class CustomDTO {
 	private String menu_title;
 	private String menu_option;
 	
-	private Long file_seq;
 	private String file_originalName;
 	private String file_upname;
 	
