@@ -2,8 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="rootPath" value="${pageContext.request.contextPath}" />
-<!DOCTYPE html>
-<html>
 <style>
 form#login_form {
 	height: 100vh;
@@ -56,9 +54,6 @@ form#login_form button:hover {
 	background-color: #036635;
 }
 </style>
-<%@ include file="/WEB-INF/views/include/include_head.jspf"%>
-<body>
-	<%@ include file="/WEB-INF/views/include/include_header.jspf"%>
 	<form id="login_form" method="POST">
 		<h2>로그인</h2>
 		<input name="m_username" placeholder="ID를 입력하세요" /> <input
@@ -66,10 +61,7 @@ form#login_form button:hover {
 		<button>로그인</button>
 
 	</form>
-<%@ include file="/WEB-INF/views/include/include_footer.jsp"%>
-</body>
 <script>
 document.querySelector("button").addEventListener("click",()=>{
 	location.href="${rootPath}/home";
 })</script>
-</html>

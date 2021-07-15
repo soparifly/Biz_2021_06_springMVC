@@ -5,14 +5,16 @@
 <%@ taglib
 	uri="http://java.sun.com/jsp/jstl/core"
 	prefix="c"%>
+	<style>
+	#customlist td{
+	display: flex;
+	
+	}
+	
+	</style>
 <c:set
 	var="rootPath"
 	value="${pageContext.request.contextPath}" />
-<!DOCTYPE html>
-<html>
-<%@ include file="/WEB-INF/views/include/include_head.jspf"%>
-<body>
-	<%@ include file="/WEB-INF/views/include/include_header.jspf"%>
 	<fieldset id="custom">
 		<h1 id="costom">커스텀게시판</h1>
 		<div class="btn_box">
@@ -28,18 +30,17 @@
 						items="${CustomList}"
 						var="CUS">
 						<tr>
-							<td>${CUS.menu_code}</td>
-							<td>${CUS.menu_title}</td>
-							<td>${CUS.user_id}</td>
+							<td>메뉴코드 : ${CUS.menu_code}</td>
+							<td>퍼스널 옵션 : ${CUS.menu_option}</td>
+							<td>메뉴 제목 : ${CUS.menu_title}</td>
+							<td>작성자 : ${CUS.user_id}</td>
+							<td>그림 : <img src = "${rootPath}/files/${CUS.file_upname}"></td>
 						</tr>
 					</c:forEach>
 				</c:otherwise>
 			</c:choose>
 		</table>
 	</fieldset>
-	<%@ include file="/WEB-INF/views/include/include_footer.jsp"%>
-</body>
-</html>
 <script>
 let menu_input = document.querySelector("button.btn_insert")
 		menu_input.addEventListener("click",()=>{

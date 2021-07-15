@@ -53,6 +53,7 @@ public class CustomServiceImplV1 implements CustomService {
 
 	@Override
 	public List<CategoryDTO> findByMenukinds(int menu_kinds) {
+		// TODO Auto-generated method stub
 		List<CategoryDTO> bsList = cateDao.findByMenukinds(menu_kinds);
 		log.debug("bsList {} ", bsList.toString());
 		return bsList;
@@ -64,12 +65,13 @@ public class CustomServiceImplV1 implements CustomService {
 	}
 
 	@Override
-	public List<CategoryDTO> findByMenuCode(int menu_code) {
+	public List<CategoryDTO> findBymenuCode(int menu_code) {
 		return cateDao.findBycode(menu_code);
 	}
 
 	@Override
 	public CategoryDTO findByMenuName(int menu_code) {
+		// TODO Auto-generated method stub
 		return cateDao.findById(menu_code);
 	}
 
@@ -77,6 +79,7 @@ public class CustomServiceImplV1 implements CustomService {
 	@Override
 	public void input(CustomDTO cuDTO, MultipartFile one_file)
 			throws Exception {
+		// TODO Auto-generated method stub
 		String strUUID = fService.fileUp(one_file);
 		
 		log.debug("strUUID {}", strUUID);

@@ -59,6 +59,11 @@ public class CustomController {
 		return "custom/input2";
 	}
 
+	//	@RequestMapping(value = "/save", method = RequestMethod.GET)
+	//	public String saveMenu(Model model, @RequestParam("menucode") int menu_code) {
+	//	
+	//		return "custom/input";
+	//	}
 
 	@RequestMapping(value = "/save", method = RequestMethod.GET)
 	public String saveMenu(@RequestParam("menucode") int menu_code, Model model) {
@@ -75,8 +80,8 @@ public class CustomController {
 		Long menu_seq = 0L;
 		cuDTO.setMenu_seq(menu_seq);
 		cuDTO.setMenu_code(menu_code);
-		log.debug("갤러리 정보 {}", cuDTO.toString());
 		log.debug("싱글 파일 {}", one_file.getOriginalFilename());
+		log.debug("갤러리 정보 {}", cuDTO.toString());
 		cuService.input(cuDTO, one_file);
 		return "redirect:/custom";
 	}

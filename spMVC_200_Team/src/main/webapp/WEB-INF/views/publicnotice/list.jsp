@@ -2,11 +2,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="rootPath" value="${pageContext.request.contextPath}" />
-<!DOCTYPE html>
-<html>
-<%@ include file="/WEB-INF/views/include/include_head.jspf"%>
-<body>
-<%@ include file="/WEB-INF/views/include/include_header.jspf"%>
 	<fieldset id="notice">
 		<h1 id="notice">공지사항</h1>
 		<div class="btn_box">
@@ -29,6 +24,3 @@
 			</tr>
 		</table>
 	</fieldset>
-<%@ include file="/WEB-INF/views/include/include_footer.jsp" %>
-</body>
-</html>

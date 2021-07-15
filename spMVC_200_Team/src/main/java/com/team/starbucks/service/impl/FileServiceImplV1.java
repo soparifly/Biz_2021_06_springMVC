@@ -64,18 +64,4 @@ public class FileServiceImplV1 implements FileService {
 		file.transferTo(uploadPathAndFile);
 		return strUUID;
 	}
-
-//	@Override
-//	public List<String> filesUp(MultipartHttpServletRequest files) throws Exception {
-//
-//		List<String> fileNames = new ArrayList<String>();
-//		String tagName = "m_file";
-//		
-//		List<MultipartFile> fileList = files.getFiles(tagName);
-//		for(MultipartFile file : fileList) {
-//			String fileName = this.fileUp(file);
-//			fileNames.add(fileName);
-//		}
-//		return fileNames;
-//	}
 }
