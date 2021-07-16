@@ -16,7 +16,7 @@
 		ORDER BY menu_seq DESC
 	</select>
 
-	<select id="findByWriter" resultType="CustomDTO">
+	<select id="findByUser_id" resultType="CustomDTO">
 
 		SELECT * FROM tbl_custom
 		WHERE user_id LIKE #{user_id}

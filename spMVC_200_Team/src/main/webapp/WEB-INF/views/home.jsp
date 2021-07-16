@@ -76,6 +76,9 @@ form {
 			<c:when test="${BODY eq 'CUSTOM-LIST'}">
 				<%@ include file="/WEB-INF/views/custom/list.jsp"%>
 			</c:when>
+			<c:when test="${BODY eq 'CUSTOM-MYLIST'}">
+				<%@ include file="/WEB-INF/views/custom/mylist.jsp"%>
+			</c:when>
 			<c:when test="${BODY eq 'CUSTOM-DETAIL'}">
 				<%@ include file="/WEB-INF/views/custom/detail.jsp"%>
 			</c:when>

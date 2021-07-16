@@ -34,10 +34,6 @@ public class CustomController {
 
 	@RequestMapping(value = { "/", "" }, method = RequestMethod.GET)
 	public String list(HttpSession session, Model model, CustomDTO customDTO) {
-		//		UserVO userVO = (UserVO) session.getAttribute("LOGIN");
-		//		if (userVO == null) {
-		//			return "redirect:/user/login";
-		//		}
 		List<CustomDTO> cuList = cuService.selectAll();
 		model.addAttribute("CustomList", cuList);
 		model.addAttribute("BODY", "CUSTOM-LIST");
@@ -50,6 +46,20 @@ public class CustomController {
 		List<CustomDTO> cuList = cuService.selectAll();
 		model.addAttribute("CustomList", cuList);
 		//		model.addAttribute("BODY", "CUSTOM_LIST");
+		return "home";
+	}
+	@RequestMapping(value = "/mylist", method = RequestMethod.GET)
+	public String myList(Model model,HttpSession session) {
+		UserVO userVO = (UserVO) session.getAttribute("LOGIN");
+		if (userVO == null) {
+			return "redirect:/user/login";
+		}
+		 
+		List<CustomDTO> myList = cuService.findByUser_id(userVO.getUser_id());
+		
+		model.addAttribute("USERVO", userVO);
+		model.addAttribute("MYLIST", myList);
+		model.addAttribute("BODY", "CUSTOM-MYLIST");
 		return "home";
 	}
 

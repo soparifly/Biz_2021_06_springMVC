@@ -49,6 +49,12 @@ public class CustomServiceImplV1 implements CustomService {
 
 		return customDTO;
 	}
+	
+	@Override
+	public List<CustomDTO> findByUser_id(String user_id) {
+		List<CustomDTO> myList = cusDao.findByUser_id(user_id);
+		return myList;
+	}
 
 	@Override
 	public List<CategoryDTO> findByMenukinds(Long menu_kinds) {

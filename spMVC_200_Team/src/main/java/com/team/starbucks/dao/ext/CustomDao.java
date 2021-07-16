@@ -15,4 +15,6 @@ public interface CustomDao extends GenericDao<CustomDTO, String> {
 	public List<CategoryDTO> findBycode(String menu_codes);
 
 	public List<CustomDTO> findBySearch(@Param("column") String search_column, @Param("text") String search_text);
+
+	public List<CustomDTO> findByUser_id(String user_id);
 }

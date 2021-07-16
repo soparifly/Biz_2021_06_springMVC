@@ -21,5 +21,6 @@ public interface CustomService{
 	public CustomDTO findBySeq(Long menu_seq);
 	
 	public CustomDTO findBySearch(String search, String column,Model model);
+	public List<CustomDTO> findByUser_id(String user_id);
 
 }

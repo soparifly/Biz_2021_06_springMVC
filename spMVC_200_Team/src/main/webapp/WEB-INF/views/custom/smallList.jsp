@@ -26,6 +26,7 @@ table#sList tr td2 {
 
 table#sList tr td img {
 	border-radius: 20px;
+	padding: 4px;
 }
 
 table#sList tr td img:hover {
