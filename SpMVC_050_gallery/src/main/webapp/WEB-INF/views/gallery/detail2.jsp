@@ -78,14 +78,11 @@ div.gallery_file:after {
 }
 div.gallery_file:hover:after{
 	content:'\f2ed';
-
 	font-size : 30px;
 	font-family:"Font Awesome 5 Free";
 	color:white;
-	
 	background-color: rgba(0,0,0,0.5);
 	vertical-align: middle;
-	
 	cursor:pointer;
 
 }

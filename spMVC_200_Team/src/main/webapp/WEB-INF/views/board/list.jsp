@@ -13,7 +13,7 @@
 	rel="stylesheet" />
 	<%@ include file="/WEB-INF/views/include/include_head.jspf"%>
 <body>
-	<%@ include file="/WEB-INF/views/include/include_header.jspf"%>
+	<%@ include file="/WEB-INF/views/include/include_nav.jspf"%>
 <fieldset id="board">
 	<h1 id="bdh1">자유게시판</h1>
 	<div class="btn_box">
@@ -50,7 +50,7 @@
 		</c:choose>
 	</table>
 </fieldset>
-<%@ include file="/WEB-INF/views/include/include_footer.jsp"%>
+<%@ include file="/WEB-INF/views/include/include_footer.jspf"%>
 <script>
 document.querySelector("button").addEventListener("click",()=>{
 	location.href="${rootPath}/";

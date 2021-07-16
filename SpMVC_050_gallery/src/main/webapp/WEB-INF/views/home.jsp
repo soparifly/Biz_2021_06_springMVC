@@ -13,7 +13,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="https://kit.fontawesome.com/a0b991b540.js" crossorigin="anonymous"></script>
+<!-- <script src="https://kit.fontawesome.com/a0b991b540.js" crossorigin="anonymous"></script> -->
 <style>
 * {
 	padding: 0;
@@ -53,6 +53,7 @@ body {
 	<header>
 		<h2>이미지갤러리</h2>
 		<%@ include file="/WEB-INF/views/include/include_nav.jspf"%>
+		<script src="https://kit.fontawesome.com/a0b991b540.js" crossorigin="anonymous"></script>
 	</header>
 	<section id="main_sec">
 		<c:choose>

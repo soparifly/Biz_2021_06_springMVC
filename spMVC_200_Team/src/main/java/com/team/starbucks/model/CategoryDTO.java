@@ -16,7 +16,7 @@ import lombok.ToString;
 public class CategoryDTO {
 
 	private Long menu_code;//
+	private Long menu_kinds;//
 	private String menu_name;//
-	private int menu_kinds;//
 
 }
