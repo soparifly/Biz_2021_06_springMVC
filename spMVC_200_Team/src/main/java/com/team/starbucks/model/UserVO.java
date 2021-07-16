@@ -16,7 +16,7 @@ import lombok.ToString;
 public class UserVO {
 	private Long user_seq;
 	private String user_id;
-	private String password;
+	private String user_password;
 	private String user_email;
 	private int user_level;
 }

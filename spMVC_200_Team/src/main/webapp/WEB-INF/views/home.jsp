@@ -73,14 +73,20 @@ form {
 			<c:when test="${BODY eq 'INPUT-SAVE'}">
 				<%@ include file="/WEB-INF/views/custom/save.jsp"%>
 			</c:when>
-			<c:when test="${BODY eq 'JOIN'}">
-				<%@ include file="/WEB-INF/views/member/join.jsp"%>
-			</c:when>
 			<c:when test="${BODY eq 'CUSTOM-LIST'}">
 				<%@ include file="/WEB-INF/views/custom/list.jsp"%>
 			</c:when>
 			<c:when test="${BODY eq 'CUSTOM-DETAIL'}">
 				<%@ include file="/WEB-INF/views/custom/detail.jsp"%>
+			</c:when>
+			<c:when test="${BODY eq 'SEARCH-LIST'}">
+				<%@ include file="/WEB-INF/views/custom/searchlist.jsp"%>
+			</c:when>
+			<c:when test="${BODY eq 'LOGIN'}">
+				<%@ include file="/WEB-INF/views/user/login.jsp"%>
+			</c:when>
+			<c:when test="${BODY eq 'JOIN'}">
+				<%@ include file="/WEB-INF/views/user/join.jsp"%>
 			</c:when>
 			<c:otherwise>
 				<%@ include file="/WEB-INF/views/custom/smallList.jsp"%>
@@ -100,15 +106,13 @@ form {
 		    if (tagName === "LI") {
 		      let menuText = e.target.textContent;
 		      if (menuText === "HOME") {
-		        urlPath += "/custom";
+		        urlPath += "/";
 		      } else if (menuText === "CUSTOM") {
 		        urlPath += "/custom/input";
 		      } else if (menuText === "BOARD") {
 		        urlPath += "/board";
 		      } else if (menuText === "LOGIN") {
-		        urlPath += "/member";
-		      } else if (menuText === "JOIN") {
-		        urlPath += "/member/join";
+		        urlPath += "/user/login";
 		      }
 		      location.href = urlPath;
 		    }

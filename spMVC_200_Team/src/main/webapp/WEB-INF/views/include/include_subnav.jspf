@@ -13,6 +13,7 @@ nav#subnav {
 	font-size: 3rem;
 	text-align: center;
 	height: 6%;
+	margin:30px auto;
 }
 
 #subnav ul {
@@ -68,7 +69,6 @@ nav#subnav {
 			  
 	        location.href = "${rootPath}/custom/";
 		  } else if(menuText === "내목록"){
-			  
 			  
 			  
 		  }

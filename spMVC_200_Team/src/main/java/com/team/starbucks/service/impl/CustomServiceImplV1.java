@@ -30,6 +30,7 @@ public class CustomServiceImplV1 implements CustomService {
 
 	@Qualifier("fileServiceV1")
 	protected final FileService fService;
+	private Model model;
 
 	@Autowired
 	public void create_table() {
@@ -91,6 +92,17 @@ public class CustomServiceImplV1 implements CustomService {
 		cuDTO.setFile_upname(strUUID);
 		log.debug("저장파일정보 {}", cuDTO.toString());
 		cusDao.insert(cuDTO);
+	}
+
+	@Override
+	public CustomDTO findBySearch(String search_text, String search_column,Model model) {
+		// TODO Auto-generated method stub
+		
+		List<CustomDTO> searchList = cusDao.findBySearch(search_column, search_text);
+		
+		model.addAttribute("searchList", searchList);
+		
+		return null;
 	}
 
 }
