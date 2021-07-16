@@ -36,14 +36,35 @@ public class CustomController {
 
 		List<CustomDTO> cuList = cuService.selectAll();
 		model.addAttribute("CustomList", cuList);
+		model.addAttribute("BODY", "CUSTOM-LIST");
+		return "home";
+	}
+	@RequestMapping(value = "/smallList", method = RequestMethod.GET)
+	public String smalllist(Model model, CustomDTO customDTO) {
+		
+		List<CustomDTO> cuList = cuService.selectAll();
+		model.addAttribute("CustomList", cuList);
 		//		model.addAttribute("BODY", "CUSTOM_LIST");
 		return "home";
+	}
+	@RequestMapping(value = "/detail", method = RequestMethod.GET)
+	public String detail(
+			@RequestParam("menu_seq") Long menu_seq,
+			Model model) {
+		CustomDTO customDTO = cuService.findBySeq(menu_seq);
+			
+		model.addAttribute("BODY", "CUSTOM-DETAIL");
+		model.addAttribute("DETAIL", customDTO);
+
+		log.debug("Detail {} ",customDTO.toString());
+		return "home";
+		
 	}
 
 	@RequestMapping(value = "/input", method = RequestMethod.GET)
 	public String insert(Model model) {
 		List<CategoryDTO> menukindsList = cuService.findBybase1();
-		log.debug("menuKinds{}", menukindsList.toString());
+//		log.debug("menuKinds{}", menukindsList.toString());
 
 		model.addAttribute("BODY", "INPUT-HOME");
 		model.addAttribute("BASE1", menukindsList);
@@ -54,7 +75,7 @@ public class CustomController {
 	@RequestMapping(value = "/input2", method = RequestMethod.GET)
 	public String insert2(@RequestParam("menukinds") Long menu_kinds, Model model) {
 		List<CategoryDTO> menukindsList = cuService.findByMenukinds(menu_kinds);
-		log.debug("munukindsList {}", menukindsList.toString());
+//		log.debug("munukindsList {}", menukindsList.toString());
 		model.addAttribute("BODY", "INPUT-KINDS");
 		model.addAttribute("KINDS", menukindsList);
 		//		return "custom/input2";
@@ -67,7 +88,7 @@ public class CustomController {
 		model.addAttribute("BODY", "INPUT-SAVE");
 		model.addAttribute("CHOISEMENU", cateDTO);
 		log.debug(cateDTO.toString());
-		log.debug("cateDTO {}:",cateDTO.toString());
+//		log.debug("cateDTO {}:",cateDTO.toString());
 		//		return "custom/save";
 		return "home";
 	}
@@ -76,7 +97,7 @@ public class CustomController {
 	public String saveMenu(@RequestParam("menucode") Long menu_code, CustomDTO cuDTO, Model model,
 			MultipartFile one_file) throws Exception {
 		
-		log.debug(menu_code + "");
+//		log.debug(menu_code + "");
 		Long menu_seq = 0L;
 		String menu_name = cuService.findByCodeName(menu_code);
 		cuDTO.setMenu_seq(menu_seq);

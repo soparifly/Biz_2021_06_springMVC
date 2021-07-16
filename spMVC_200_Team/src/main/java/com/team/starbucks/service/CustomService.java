@@ -17,6 +17,7 @@ public interface CustomService{
 	public String findByCodeName(Long menu_code);
 	
 	public void input(CustomDTO cuDTO,MultipartFile one_file) throws Exception;
+	public CustomDTO findBySeq(Long menu_seq);
 	
 
 }

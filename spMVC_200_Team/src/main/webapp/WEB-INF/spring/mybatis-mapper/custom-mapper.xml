@@ -7,10 +7,9 @@
 		SELECT * FROM tbl_custom
 	</select>
 
-	<select id="findById" resultType="CustomDTO">
+	<select id="findBySeq" resultType="CustomDTO">
 		SELECT * FROM tbl_custom
-		WHERE
-		menu_seq = #{menu_seq}
+		WHERE menu_seq = #{menu_seq}
 	</select>
 
 	<insert id="insert" parameterType="CustomDTO">

@@ -20,8 +20,9 @@
 	justify-content: center;
 }
 
-#listtr {
-	margin: 10px;
+#customTr {
+	margin: 30px auto;
+	margin-bottom: 100px;
 }
 
 #customlist td {
@@ -31,16 +32,26 @@
 	font-weight: 400;
 }
 
+#customlist td:nth-of-type(1) {
+	margin-top: 80px;
+}
+
 #last {
-	border-bottom: 5px double #aaa;
-	margin-bottom: 70px;
+	border-bottom: 1px double #aaa;
+	padding-bottom: 70px;
 }
 
 #customlist img {
 	display: inline-block;
-	border-radius: 10px;
+	border-radius: 30px;
 	width: 800px;
 	margin: 0 auto;
+}
+
+h3:before {
+	content: ' \2730';
+	color: green;
+	font-size: 100px;
 }
 </style>
 <c:set
@@ -48,34 +59,24 @@
 	value="${pageContext.request.contextPath}" />
 
 <fieldset id="custom">
-	<!-- <div class="btn_box">
-	버튼을 유니코드로할것
-		<button class="btn_insert">메뉴 등록</button>
-	</div> -->
 	<table id="customlist">
 		<c:choose>
 			<c:when test="${empty CustomList}">
-				<td colspan="2">데이터없음</td>
+				<td colspan="5">데이터없음</td>
 			</c:when>
 			<c:otherwise>
 				<c:forEach
 					items="${CustomList}"
 					var="CUS">
-					<tr id="listtr">
-						<td>작성자 : ${CUS.user_id}</td>
+					<tr id="customTr">
+						<td><h3>${CUS.user_id}</h3></td>
 						<td id="img"><img src="${rootPath}/files/${CUS.file_upname}"></td>
-						<td>메뉴 제목 : ${CUS.menu_title}</td>
+						<td>메뉴 제목 	: ${CUS.menu_title}</td>
 						<td>퍼스널 옵션 :${CUS.menu_option}</td>
-						<td id="last">메뉴종류 : ${CUS.menu_name}</td><!-- 메뉴코드에해당하는메뉴일므 -->
+						<td id="last">메뉴종류 : ${CUS.menu_name}</td>
 					</tr>
 				</c:forEach>
 			</c:otherwise>
 		</c:choose>
 	</table>
 </fieldset>
-<script>
-	/* let menu_input = document.querySelector("button.btn_insert")
-	 menu_input.addEventListener("click",()=>{
-	 location.href = "${rootPath}/custom/input"
-	 }) */
-</script>
