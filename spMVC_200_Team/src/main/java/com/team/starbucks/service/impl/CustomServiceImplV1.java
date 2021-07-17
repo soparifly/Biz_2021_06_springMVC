@@ -100,7 +100,7 @@ public class CustomServiceImplV1 implements CustomService {
 	}
 
 	@Override
-	public CustomDTO findBySearch(String search_text, String search_column, Model model) {
+	public CustomDTO findBySeargch(String search_text, String search_column, Model model) {
 		// TODO Auto-generated method stub
 
 		List<CustomDTO> searchList = cusDao.findBySearch(search_column, search_text);
