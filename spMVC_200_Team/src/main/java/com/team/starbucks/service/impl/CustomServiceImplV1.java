@@ -48,7 +48,7 @@ public class CustomServiceImplV1 implements CustomService {
 
 		return customDTO;
 	}
-	
+
 	@Override
 	public List<CustomDTO> findByUser_id(String user_id) {
 		List<CustomDTO> myList = cusDao.findByUser_id(user_id);
@@ -100,27 +100,31 @@ public class CustomServiceImplV1 implements CustomService {
 	}
 
 	@Override
-	public CustomDTO findBySearch(String search_text, String search_column,Model model) {
+	public CustomDTO findBySearch(String search_text, String search_column, Model model) {
 		// TODO Auto-generated method stub
-		
+
 		List<CustomDTO> searchList = cusDao.findBySearch(search_column, search_text);
-		
+
 		model.addAttribute("searchList", searchList);
-		
+
 		return null;
 	}
 
 	@Override
 	public int delete(Long seq) {
-		// TODO Auto-generated method stub
+		CustomDTO customDTO = cusDao.findById(seq);
+		if (customDTO == null) {
+			return 0;
 
-	return 0;
+		}
+
+		return 0;
 	}
 
 	@Override
 	public void update(Long seq) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }
