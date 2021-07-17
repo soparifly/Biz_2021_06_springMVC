@@ -30,7 +30,6 @@ public class CustomServiceImplV1 implements CustomService {
 
 	@Qualifier("fileServiceV1")
 	protected final FileService fService;
-	private Model model;
 
 	@Autowired
 	public void create_table() {
@@ -109,6 +108,19 @@ public class CustomServiceImplV1 implements CustomService {
 		model.addAttribute("searchList", searchList);
 		
 		return null;
+	}
+
+	@Override
+	public int delete(Long seq) {
+		// TODO Auto-generated method stub
+
+	return 0;
+	}
+
+	@Override
+	public void update(Long seq) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

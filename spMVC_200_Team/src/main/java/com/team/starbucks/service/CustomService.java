@@ -9,7 +9,6 @@ import com.team.starbucks.model.CategoryDTO;
 import com.team.starbucks.model.CustomDTO;
 
 public interface CustomService{
-
 	public List<CustomDTO> selectAll();
 	public List<CategoryDTO> findByMenukinds(Long menu_kinds);
 	public List<CategoryDTO> findBybase1();
@@ -22,5 +21,8 @@ public interface CustomService{
 	
 	public CustomDTO findBySearch(String search, String column,Model model);
 	public List<CustomDTO> findByUser_id(String user_id);
+	
+	public int delete(Long seq);
+	public void update(Long seq);
 
 }

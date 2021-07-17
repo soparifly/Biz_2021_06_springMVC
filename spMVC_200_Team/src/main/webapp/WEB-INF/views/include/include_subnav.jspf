@@ -14,7 +14,7 @@ nav#subnav {
 	text-align: center;
 	height: 6%;
 	display: flex;
-	margin: 15px auto;
+	margin: 35px auto;
 }
 
 #subnav ul {
