@@ -27,21 +27,23 @@ public class UserController {
 
 	@RequestMapping(value = "/join", method = RequestMethod.GET)
 	public String join(Model model) {
-
 		model.addAttribute("BODY", "JOIN");
 		return "home";
 	}
 
 	@RequestMapping(value = "/join", method = RequestMethod.POST)
 	public String join(UserVO usVO, Model model) {
-		if(usVO == null) {
+		if (usVO == null) {
 			log.debug("회원가입실패");
 			model.addAttribute("JOINMSG", "FAIL");
-		 return "redirect:/join";
-		}
+//			model.addAttribute("BODY", "JOIN");
+			return null;
+		} else {
 			
-		usService.join(usVO);
-		return "redirect:/login";
+			usService.join(usVO);
+			model.addAttribute("BODY", "JOIN");
+			return "home";
+		}
 	}
 
 	@ResponseBody
@@ -57,21 +59,13 @@ public class UserController {
 			return "USE_ID";
 		}
 	}
-	
-	@RequestMapping(value ="/login/{url}")
+
+	@RequestMapping(value = "/login/{url}")
 	public String login(@PathVariable("url") String url) {
-		
-		return "redirect/user/login?url=login";
-		
+
+		return "redirect:/user/login?url=login";
+
 	}
-//	@RequestMapping(value = "/login", method=RequestMethod.GET)
-//	public String login2( @RequestParam(name="url", required = false, defaultValue = "NONE")String url,
-//			Model model){
-//		
-//		return "home";
-//		
-//	}
-	
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login(@RequestParam(name = "MSG", required = false) String msg, Model model) {

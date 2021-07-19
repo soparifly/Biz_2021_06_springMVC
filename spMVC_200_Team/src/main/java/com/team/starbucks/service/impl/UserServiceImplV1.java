@@ -37,7 +37,7 @@ public class UserServiceImplV1 implements UserService {
 
 	// 회원가입
 	@Override
-	public UserVO join(UserVO usVO) {
+	public UserVO join(UserVO usVO){
 		List<UserVO> users = usDao.selectAll();
 		log.debug("Users {}", users.toString());
 

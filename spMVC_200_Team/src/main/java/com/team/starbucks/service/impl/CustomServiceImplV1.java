@@ -100,7 +100,7 @@ public class CustomServiceImplV1 implements CustomService {
 	}
 
 	@Override
-	public CustomDTO findBySeargch(String search_text, String search_column, Model model) {
+	public CustomDTO findBySearch(String search_text, String search_column, Model model) {
 		// TODO Auto-generated method stub
 
 		List<CustomDTO> searchList = cusDao.findBySearch(search_column, search_text);
@@ -112,12 +112,13 @@ public class CustomServiceImplV1 implements CustomService {
 
 	@Override
 	public int delete(Long seq) {
-		CustomDTO customDTO = cusDao.findById(seq);
-		if (customDTO == null) {
-			return 0;
-
-		}
-
+//		/*
+//		CustomDTO customDTO = cusDao.findById(seq);
+//		if (customDTO == null) {
+//			return 0;
+//		
+//		}
+//		
 		return 0;
 	}
 
