@@ -36,5 +36,10 @@ public class CommentServiceImplV1 implements CommentService {
 		
 		return comDao.insert(commentDTO);
 	}
+	@Override
+	public int delete(Long comment_seq) {
+		comDao.delete(comment_seq);
+		return 0;
+	}
 
 }

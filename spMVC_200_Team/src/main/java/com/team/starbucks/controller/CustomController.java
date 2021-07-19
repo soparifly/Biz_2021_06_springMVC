@@ -61,11 +61,11 @@ public class CustomController {
 		if (userVO == null) {
 			return "redirect:/user/login";
 		} else {
-		List<CustomDTO> myList = cuService.findByUser_id(userVO.getUser_id());
-		model.addAttribute("USERVO", userVO);
-		model.addAttribute("MYLIST", myList);
-		model.addAttribute("BODY", "CUSTOM-MYLIST");
-		return "home";
+			List<CustomDTO> myList = cuService.findByUser_id(userVO.getUser_id());
+			model.addAttribute("USERVO", userVO);
+			model.addAttribute("MYLIST", myList);
+			model.addAttribute("BODY", "CUSTOM-MYLIST");
+			return "home";
 		}
 	}
 
@@ -74,27 +74,24 @@ public class CustomController {
 		UserVO userVO = (UserVO) session.getAttribute("LOGIN");
 		if (userVO == null) {
 			return "redirect:/user/login";
-		} else {
-			CustomDTO customDTO = cuService.findBySeq(menu_seq);
-			//			필요한것 menu_seq, User_id,  comment_seq, comment	
-			
-			List<CommentDTO> comList =comService.selectByMenuseq(menu_seq, model); 
-			model.addAttribute("COMMENT", comList);
-			model.addAttribute("SECTION", "COMMENT");
-
-			model.addAttribute("DETAIL", customDTO);
-			model.addAttribute("BODY", "CUSTOM-DETAIL");
-
-			log.debug("Detail {} ", customDTO.toString());
-			return "home";
-
 		}
+		CustomDTO customDTO = cuService.findBySeq(menu_seq);
+		//			필요한것 menu_seq, User_id,  comment_seq, comment	
+
+		List<CommentDTO> comList = comService.selectByMenuseq(menu_seq, model);
+		model.addAttribute("COMMENT", comList);
+		model.addAttribute("SECTION", "COMMENT");
+
+		model.addAttribute("DETAIL", customDTO);
+		model.addAttribute("BODY", "CUSTOM-DETAIL");
+		return "home";
 	}
 
 	@RequestMapping(value = "/detail", method = RequestMethod.POST)
-	public String comment(@RequestParam("menu_seq") Long menu_seq, CommentDTO commentDTO, HttpSession session,Model model) {
+	public String comment(@RequestParam("menu_seq") Long menu_seq, CommentDTO commentDTO, HttpSession session,
+			Model model) {
 		UserVO userVO = (UserVO) session.getAttribute("LOGIN");
-	
+
 		String userId = userVO.getUser_id();
 
 		Date date = new Date(System.currentTimeMillis());
@@ -112,16 +109,38 @@ public class CustomController {
 			return "redirect:/";
 		}
 		return "redirect:/";
+	}
+
+	@RequestMapping(value = "/commentdel", method = RequestMethod.GET)
+	public String commentdelete(Model model) {
+		
+		
+		
+		return "redirect:/";
+	}
+
+	@RequestMapping(value = "/commentdel", method = RequestMethod.POST)
+	public String commentdelete(@RequestParam("comment_seq") Long comment_seq, Model model, HttpSession session) {
+		UserVO userVO = (UserVO) session.getAttribute("LOGIN");
+		if (userVO == null) {
+			return "redirect:/user/login";
 		}
-	
-	@RequestMapping(value="/delete",method = RequestMethod.GET)
-	public String customDelete(@RequestParam("menu_seq") Long menu_seq,HttpSession session,Model model) throws Exception {
+		int ret = comService.delete(comment_seq);
+		if (ret == 0) {
+			log.debug("삭제완료");
+		}
+		return "redirect:/";
+	}
+
+	@RequestMapping(value = "/delete", method = RequestMethod.GET)
+	public String customDelete(@RequestParam("menu_seq") Long menu_seq, HttpSession session, Model model)
+			throws Exception {
 		UserVO userVO = (UserVO) session.getAttribute("LOGIN");
 		if (userVO == null) {
 			return "redirect:/user/login";
 		}
 		cuService.delete(menu_seq, model);
-	 return "redirect:/custom/mylist";	
+		return "redirect:/custom/mylist";
 	}
 
 	@RequestMapping(value = "/search", method = RequestMethod.GET)

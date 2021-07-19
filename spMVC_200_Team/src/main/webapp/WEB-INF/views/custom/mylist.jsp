@@ -71,15 +71,32 @@ h3#mylistuser:before {
 	font-size: 100px;
 }
 
+#mylistlasttd {
+	width: 100%;
+	position: relative;
+}
+
+#deletemy {
+	width: 50px;
+	background-color: #036635;
+	color: whitesmoke;
+	height: 50px;
+	border: 1px soid transparent;
+	border-radius: 10px;
+	position:absolute;
+	right: 20px;
+}
 </style>
 <fieldset id="MYLISTfieldset">
-<form method="POST" action="${rootPath}/user/update?user_id=${USERVO.user_id}">
-	<h3 id="mylistuser">
-		<p>${USERVO.user_id}님</p>
-		안녕하세요!
-	</h3>
-	<button value="${USERVO.user_id}">회원정보수정</button>
-</form>
+	<form
+		method="POST"
+		action="${rootPath}/user/update?user_id=${USERVO.user_id}">
+		<h3 id="mylistuser">
+			<p>${USERVO.user_id}님</p>
+			안녕하세요!
+		</h3>
+		<button value="${USERVO.user_id}">회원정보수정</button>
+	</form>
 	<table id="MYLISTtable">
 		<c:choose>
 			<c:when test="${empty MYLIST}">
@@ -90,11 +107,18 @@ h3#mylistuser:before {
 					items="${MYLIST}"
 					var="MYLIST">
 					<tr id="MYLISTTr">
-						<td id="MYLISTimg"><img
-							src="${rootPath}/files/${MYLIST.file_upname}">
+						<td id="MYLISTimg">
+						<c:if test="${empty MYLIST.file_upname}">
+							<img src="${rootPath}/files/noImage.png" alt="main_image">
+						</c:if>
+						<c:if test="${not empty MYLIST.file_upname}">
+								<img src="${rootPath}/files/${MYLIST.file_upname}">
+
+							</c:if>
 						<td>메뉴 제목 : ${MYLIST.menu_title}</td>
 						<td>퍼스널 옵션 :${MYLIST.menu_option}</td>
-						<td>메뉴종류 : ${MYLIST.menu_name} <input
+						<td>메뉴종류 : ${MYLIST.menu_name}</td>
+						<td id="mylistlasttd"><input
 								type="button"
 								id="deletemy"
 								value="삭제"

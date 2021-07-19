@@ -103,15 +103,16 @@
 							value="${RE.comment}"
 							disabled="disabled"></td>
 					<td>
-					<form method="POST" action="${rootPath}/custom/redelete?comment_seq" + ${RE.comment_seq}>
-						<button
-							type="submit"
-							name="${RE.comment_seq}"
-							value="${RE.comment_seq}">X</button>
-					</form>
+						<c:if test="${RE.user_id == LOGIN.user_id}">
+							<form action="${rootPath}/custom/commentdel" method="POST">
+								<button name="comment_seq" value="${RE.comment_seq}" type="submit">X</button>
+							</form>
+						</c:if>
 					</td>
 				</tr>
 			</c:forEach>
 		</c:otherwise>
 	</c:choose>
 </table>
+<script>
+</script>

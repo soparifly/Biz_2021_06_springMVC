@@ -11,5 +11,5 @@ public interface CommentService {
 	public List<CommentDTO> selectByMenuseq(Long menu_seq,Model model);
 
 	public int insert(CommentDTO commentDTO);
-	
+	public int delete(Long comment_seq);
 }
