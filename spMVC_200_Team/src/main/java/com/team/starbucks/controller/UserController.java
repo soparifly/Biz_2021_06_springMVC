@@ -36,10 +36,10 @@ public class UserController {
 		if (usVO == null) {
 			log.debug("회원가입실패");
 			model.addAttribute("JOINMSG", "FAIL");
-//			model.addAttribute("BODY", "JOIN");
+			//			model.addAttribute("BODY", "JOIN");
 			return null;
 		} else {
-			
+
 			usService.join(usVO);
 			model.addAttribute("BODY", "JOIN");
 			return "home";
@@ -102,4 +102,32 @@ public class UserController {
 		return "redirect:/";
 	}
 
+	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	public String userUpdate(@RequestParam("user_id") String user_id, HttpSession session, Model model)
+			throws Exception {
+		UserVO userVO = (UserVO) session.getAttribute("LOGIN");
+		String loginId = userVO.getUser_id();
+		log.debug("로그인한 아이디 {}", loginId);
+		// String updateId = user_id;
+		log.debug("수정할 아이디 {}", user_id);
+		if (user_id.equals(loginId)) {
+			model.addAttribute("USERVO", userVO);
+			model.addAttribute("BODY", "UPDATE-ID");
+			return "home";
+		} else {
+			model.addAttribute("BODY", "FAIL_LOGIN");
+			log.debug("회원정보 수정진입 실패 ", userVO.toString());
+			return "home";
+		}
+	}
+
+	@RequestMapping(value = "/updateID", method = RequestMethod.POST)
+	public String userUpdate(@RequestParam("user_id") String user_id, UserVO userVO, HttpSession session, Model model)
+			throws Exception {
+		userVO = (UserVO) session.getAttribute("LOGIN");
+		log.debug("userVO {}", userVO.toString());
+		usService.insertOrUpdate(userVO);
+		
+		return "redirect:/custom/mylist";
+	}
 }

@@ -10,5 +10,7 @@ public interface FileService {
 	public String fileUp(MultipartFile one_file) throws Exception;
 //	다수파일업로드
 //	public List<String> filesUp(MultipartHttpServletRequest files) throws Exception;
+
+	public int delete(String imgFileName) throws Exception;
 	
 }

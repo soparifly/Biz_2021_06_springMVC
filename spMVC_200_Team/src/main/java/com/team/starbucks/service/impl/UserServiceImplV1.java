@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -70,6 +72,17 @@ public class UserServiceImplV1 implements UserService {
 		}
 
 		return userVO;
+	}
+
+	@Override
+	public void insertOrUpdate(UserVO userVO) throws Exception{
+	 usDao.update(userVO);
+	 log.debug("수정완료");
+	}
+
+	@Override
+	public void delete(Long user_seq) {
+		// TODO Auto-generated method stub
 	}
 
 }

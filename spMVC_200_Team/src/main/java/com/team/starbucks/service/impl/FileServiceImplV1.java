@@ -70,8 +70,6 @@ public class FileServiceImplV1 implements FileService {
 		if (imgFileName == null || imgFileName.isEmpty()) {
 			return 1;
 		}
-		//	CustomDTO cusDTO = cusDao.findBySeq(seq);
-		//		cateDao.delete(seq);
 		File delFile = new File(this.fileUpPath, imgFileName);
 
 		if (delFile.exists()) {
