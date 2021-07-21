@@ -1,0 +1,407 @@
+/* home CSS  */
+@media ( max-width :500px) {
+	* {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+	}
+	body {
+		background-color: whitesmoke;
+		width: 100%;
+		height: 100%;
+	}
+	fieldset {
+		border: 1px solid transparent;
+		width: 100%;
+	}
+	#home_header {
+		width: 100%;
+		height: 25%;
+		background-color: #036635;
+		text-align: center;
+		position: fixed;
+		top: 0;
+		z-index: 100;
+	}
+	h1 {
+		font-size: 4rem;
+		color: whitesmoke;
+		margin-bottom: 30px;
+	}
+	body {
+		border: 1px solid transparent;
+		padding-top: 50%;
+	}
+	form {
+		border: 1px solid transparent;
+	}
+	#main_nav {
+		background-color: #036635;
+		height:4%;
+	} 
+	#main_nav ul {
+		display: flex;
+		list-style: none;
+	}
+	#main_nav ul li {
+		font-size: 1rem;
+		font-weight: 400;
+		padding: 2px auto;
+		margin: 0 auto;
+		color: whitesmoke;
+		/* 픽토그램으로 하는걸 생각해봄 */
+	}
+	#main_nav ul li:hover {
+		cursor: pointer;
+	}
+	/* detail */
+	table#detail {
+		margin: 19px auto;
+		padding: 0;
+	}
+	table#detail tr {
+		
+	}
+	table#detail td {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		margin: 5px auto;
+		padding: 6px 20px;
+		font-size: 2rem;
+		font-weight: 400;
+		justify-content: center;
+		text-align: center;
+	}
+	#detailImg {
+		margin: 10px auto;
+		width: 100%;
+		justify-content: center;
+		text-align: center;
+	}
+	#detailImg img {
+		margin: 0 auto;
+		border-radius: 30px;
+		width: 80%;
+	}
+	h3:before {
+		content: ' \2730';
+		color: green;
+		font-size: 100px;
+	}
+	/* input */
+	#input1 {
+		text-align: center;
+		margin: 0px auto;
+		padding: 0px auto;
+		border: 1px solid transparent;
+		height: 100%;
+	}
+	#input1 tr#bs1 {
+		list-style: none;
+		font-size: 60px;
+		text-align: center;
+	}
+	#input1 td {
+		font-size: 60px;
+		padding: 30px;
+		border: 1px dotted #aaa;
+		border-radius: 10px;
+	}
+	#input1 td:hover {
+		cursor: pointer;
+		outline: 1px dotted #aaa;
+		transition: 0.3s;
+		background-color: #aaa;
+	}
+	#input2 {
+		text-align: center;
+		margin: 5px auto;
+		padding: 0px auto;
+		height: 100%;
+	}
+	#bs2tr {
+		list-style: none;
+		text-align: center;
+	}
+	#input2 td {
+		font-size: 60px;
+		padding: 30px;
+		border: 1px dotted #aaa;
+		border-radius: 10px;
+	}
+	#input2 td:hover {
+		cursor: pointer;
+		outline: 1px dotted #aaa;
+		transition: 0.3s;
+		background-color: #aaa;
+	}
+
+	/* #custom {
+	width: 100%;
+	padding: 0;
+	margin: 0 auto;
+	border: 1px solid transparent;
+}
+ */ /*list*/
+	#customlist {
+		margin: 19px auto;
+		padding: 0;
+	}
+	#customlist tr {
+		justify-content: center;
+	}
+	#customlist td {
+		padding: 0 20px;
+		width: 100%;
+		font-size: 1rem;
+		font-weight: 400;
+		display: flex;
+	}
+	#customlist img {
+		margin: 0 auto;
+		border-radius: 30px;
+		width: 80%;
+		justify-content: center;
+		align-items: center;
+	}
+	h3:before {
+		content: ' \2730';
+		color: green;
+		font-size: 2rem;
+	}
+	/* mylist */
+	#MYLIST {
+		border: 1px solid transparent;
+		width: 100%;
+	}
+	#MYLIST tr {
+		margin: 30px auto;
+		margin-bottom: 100px;
+	}
+	#MYLIST td {
+		margin: 10px;
+		display: flex;
+		font-size: 1rem;
+		font-weight: 400;
+		justify-content: center;
+		text-align: center;
+	}
+	#MYLIST tr td:first-of-type {
+		margin-top: 80px;
+	}
+	#MYLIST td:last-of-type {
+		position: relative;
+		border-bottom: 1px double #aaa;
+		padding-bottom: 70px;
+		width: 100%;
+	}
+	#MYLIST tr td img {
+		display: inline-block;
+		border-radius: 30px;
+		width: 80%;
+		margin: 0 auto;
+	}
+	#MYLISTtd .mylistlasttd input.deletepic {
+		width: 50px;
+		background-color: #036635;
+		color: whitesmoke;
+		height: 50px;
+		border: 1px soid transparent;
+		border-radius: 10px;
+		position: absolute;
+		right: 20px;
+		text-align: center;
+	}
+	#MYLIST h3#mylistuser {
+		font-size: 1rem;
+		text-align: center;
+	}
+	#MYLIST h3#mylistuser:before {
+		font-size: 3rem;
+		margin-top: 20px auto;
+		content: ' \2730';
+		color: green;
+	}
+	#mylistuser {
+		font-size: 2rem;
+		text-align: center;
+	}
+	#mylistuser p {
+		font-size: 2rem;
+		text-align: center;
+		justify-content: center;
+	}
+	#MYLISTfieldset button {
+		width: 300px;
+		border: 1px dotted transparent;
+		background-color: #036635;
+		height: 30px;
+		color: whitesmoke;
+		opacity: 0.4;
+		text-align: center;
+		justify-content: center;
+		margin: 0 auto;
+		display: flex;
+	}
+	/* save */
+	#savemenu {
+		text-align: center;
+		font-size: 50px;
+		height: 100%;
+	}
+	div#inputlist {
+		margin: 15% auto;
+	}
+	#savemenu input {
+		text-align: center;
+		display: flex;
+		width: 60%;
+		height: 10%;
+		flex: 1;
+		outline: 0;
+		border: 1px solid #aaa;
+		border-radius: 10px;
+		margin: 10px auto;
+		font-size: 40px;
+		display: flex;
+		justify-content: center;
+	}
+	button.save {
+		height: 5%;
+		width: 20%;
+		font-size: 1rem;
+		background-color: #036635;
+		color: whitesmoke;
+		border-radius: 10px;
+	}
+	button.list {
+		height: 10%;
+		width: 60%;
+		font-size: 50px;
+		background-color: #036635;
+		color: whitesmoke;
+		border-radius: 10px;
+	}
+
+	/*searchlist*/
+	#SEARCH {
+		padding: 0;
+		margin: 20px auto;
+		width: 100%;
+		border: 1px solid transparent;
+	}
+	#SEARCHlist {
+		display: flex;
+		margin: 19px auto;
+		padding: 0;
+		justify-content: center;
+	}
+	#SEARCHTr {
+		margin: 30px auto;
+		margin-bottom: 100px;
+	}
+	#SEARCHlist td {
+		margin: 10px;
+		display: flex;
+		font-size: 50px;
+		font-weight: 400;
+	}
+	#SEARCHlist td:nth-of-type(1) {
+		margin-top: 80px;
+	}
+	#SEARCHlast {
+		border-bottom: 1px double #aaa;
+		padding-bottom: 70px;
+	}
+	#SEARCHlist img {
+		display: inline-block;
+		border-radius: 30px;
+		width: 70%;
+		margin: 0 auto;
+	}
+	#SEARCHH3:before {
+		content: ' \2730';
+		color: green;
+		font-size: 100px;
+	}
+	/* smaillist*/
+	#SEARCH {
+		padding: 0;
+		margin: 20px auto;
+		width: 100%;
+		border: 1px solid transparent;
+	}
+	#SEARCHlist {
+		display: flex;
+		margin: 19px auto;
+		padding: 0;
+		justify-content: center;
+	}
+	#SEARCHTr {
+		margin: 30px auto;
+		margin-bottom: 100px;
+	}
+	#SEARCHlist td {
+		margin: 10px;
+		display: flex;
+		font-size: 50px;
+		font-weight: 400;
+	}
+	#SEARCHlist td:nth-of-type(1) {
+		margin-top: 80px;
+	}
+	#SEARCHlast {
+		border-bottom: 1px double #aaa;
+		padding-bottom: 70px;
+	}
+	#SEARCHlist img {
+		display: inline-block;
+		border-radius: 30px;
+		width: 800px;
+		margin: 0 auto;
+	}
+	#SEARCHH3:before {
+		content: ' \2730';
+		color: green;
+		font-size: 100px;
+	}
+	/*smalllist*/
+	#sList {
+		text-align: center;
+		display: fixed;
+	}
+	#sList tr {
+		width: 100%;
+		height: 100%;
+		display: inline;
+		text-align: center;
+	}
+	#sList td {
+		width: 70%;
+		height: 70%;
+		overflow: hidden;
+		margin: 0px auto;
+		position: relative;
+		margin: 0px auto;
+		display: flex;
+	}
+	#sList td img {
+		width: 100%;
+		height: 100%;
+		border-radius: 20px;
+		padding: 4px;
+		background-color: whitesmoke;
+	}
+	#dot:before {
+		height: 100%;
+		content: ' \205D';
+		bottom: 10;
+		right: 20;
+		font-size: 80px;
+		font-weight: 500;
+		color: whitesmoke;
+		position: absolute;
+		z-index: 0;
+	}
+}

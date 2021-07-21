@@ -102,7 +102,7 @@ public class UserController {
 		return "redirect:/";
 	}
 
-	@RequestMapping(value = "/update", method = RequestMethod.POST)
+	@RequestMapping(value = "/update", method = RequestMethod.GET)
 	public String userUpdate(@RequestParam("user_id") String user_id, HttpSession session, Model model)
 			throws Exception {
 		UserVO userVO = (UserVO) session.getAttribute("LOGIN");
@@ -126,7 +126,7 @@ public class UserController {
 			throws Exception {
 		userVO = (UserVO) session.getAttribute("LOGIN");
 		log.debug("userVO {}", userVO.toString());
-		usService.insertOrUpdate(userVO);
+		usService.update(userVO);
 		
 		return "redirect:/custom/mylist";
 	}

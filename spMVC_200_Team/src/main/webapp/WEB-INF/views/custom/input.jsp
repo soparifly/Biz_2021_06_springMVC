@@ -9,37 +9,11 @@
 	var="rootPath"
 	value="${pageContext.request.contextPath}" />
 <style>
-#ch1 {
-	text-align: center;
-	margin: 0px auto;
-	padding: 0px auto;
-	border: 1px solid transparent;
-	height: 100%;
-}
 
-tr#bs1 {
-	list-style: none;
-	font-size: 60px;
-	text-align: center;
-}
-
-td {
-	font-size: 60px;
-	padding: 30px;
-	border: 1px dotted #aaa;
-	border-radius: 10px;
-}
-
-td:hover {
-	cursor: pointer;
-	outline: 1px dotted #aaa;
-	transition: 0.3s;
-	background-color: #aaa;
-}
 </style>
 <fieldset>
 	<form method="GET">
-		<table id="ch1">
+		<table id="input1">
 			<c:choose>
 				<c:when test="${empty BASE1}">
 				</c:when>
@@ -59,7 +33,7 @@ td:hover {
 	</form>
 </fieldset>
 <script>
-let base1 = document.querySelector("table#ch1")
+let base1 = document.querySelector("table#input1")
 if(base1){
 	base1.addEventListener("click",(e)=>{
 			let td = e.target

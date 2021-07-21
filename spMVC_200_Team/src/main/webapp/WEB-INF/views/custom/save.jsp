@@ -8,41 +8,6 @@
 <c:set
 	var="rootPath"
 	value="${pageContext.request.contextPath}" />
-<style>
-#savemenu {
-	text-align: center;
-	font-size: 50px;
-	height: 100%;
-}
-
-div#inputlist {
-	margin: 15% auto;
-}
-
-#savemenu input {
-	text-align: center;
-	display: flex;
-	width: 60%;
-	height: 10%;
-	flex: 1;
-	outline: 0;
-	border: 1px solid #aaa;
-	border-radius: 10px;
-	margin: 10px auto;
-	font-size: 40px;
-	display: flex;
-	justify-content: center;
-}
-
-button.save {
-	height: 10%;
-	width: 60%;
-	font-size: 50px;
-	background-color: #036635;
-	color: whitesmoke;
-	border-radius: 10px;
-}
-</style>
 <fieldset>
 	<form
 		method="POST"
@@ -58,8 +23,8 @@ button.save {
 			<input
 				name="user_id"
 				id="user_id"
-				value="${USER}"
-				placeholder="${USER}"
+				value="${LOGIN.user_id}"
+				placeholder="${LOGIN.user_id}"
 				disabled="disabled">
 			<input
 				name="menu_title"
@@ -75,22 +40,47 @@ button.save {
 				placeholder="사진을 올려주세요">
 		</div>
 		<button
-			type="submit"
+			type="button"
 			class="save">저장</button>
+		<button
+			type="button"
+			class="list">돌아가기</button>
 	</form>
 </fieldset>
 <script>
-	let menu_name = document.querySelector("#menu_name").value
-	let menu_title = document.querySelector("#menu_title").value
-	let menu_option = document.querySelector("#menu_option").value
-	let user_id = document.querySelector("#user_id").value
-	let one_file = document.querySelector("#one_file").value
-	/* 
-	 if (menu_title === "") {
-	 alert("메뉴 이름은 반드시 정해주세요")
-	 menu_title.focus()
-	 return false;
-	 }
-	 */
-	document.querySelector("form#savemenu").submit()
+	const menu_submit = ()=> {
+		let menu_name = document.querySelector("input#menu_name")
+		let menu_title = document.querySelector("input#menu_title")
+		let menu_option = document.querySelector("input#menu_option")
+		let one_file = document.querySelector("input#one_file")
+	
+		if(menu_title.value === ""){
+			 alert("메뉴 이름은 반드시 정해주세요")
+			menu_title.focus()
+			return false;
+		}
+		if(menu_option.value === ""){
+			alert("메뉴옵션은 입력해주세요")
+			menu_option.focus()
+			return false;
+		}
+		document.querySelector("form#savemenu").submit()
+	}
+	document.querySelector("form#savemenu").addEventListener("click",(e)=>{
+		
+			let target = e.target
+				
+			if(target.tagName === "BUTTON"){
+				if(target.className.includes("save")){
+						menu_submit();
+						
+				} else if(target.className.includes("list")){
+						location.href ="${rootPath}"
+				}
+			}
+			
+	})
+	
+	
+		
 </script>

@@ -10,7 +10,7 @@
 	value="${pageContext.request.contextPath}" />
 <style>
 section#search_box {
-	width: 90vw;
+	width: 90%;
 	margin: 30px auto;
 }
 

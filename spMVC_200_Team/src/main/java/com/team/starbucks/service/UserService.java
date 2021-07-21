@@ -19,7 +19,7 @@ public interface UserService {
 	
 	
 	//회원 정보 수정
-	public void insertOrUpdate(UserVO userVO) throws Exception;
+	public void update(UserVO userVO) throws Exception;
 
 	public void delete(Long user_seq);
 }

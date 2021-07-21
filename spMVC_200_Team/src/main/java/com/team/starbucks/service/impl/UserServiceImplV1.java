@@ -48,7 +48,7 @@ public class UserServiceImplV1 implements UserService {
 		} else {
 			usVO.setUser_level(9);
 		}
-		usDao.insertOrUpdate(usVO);
+		usDao.update(usVO);
 		return usVO;
 	}
 
@@ -75,7 +75,7 @@ public class UserServiceImplV1 implements UserService {
 	}
 
 	@Override
-	public void insertOrUpdate(UserVO userVO) throws Exception{
+	public void update(UserVO userVO) throws Exception{
 	 usDao.update(userVO);
 	 log.debug("수정완료");
 	}

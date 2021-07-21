@@ -10,7 +10,6 @@
 	value="${pageContext.request.contextPath}" />
 <style>
 nav#subnav {
-	font-size: 3rem;
 	text-align: center;
 	height: 6%;
 	display: flex;
@@ -27,7 +26,7 @@ nav#subnav {
 #subnav ul li {
 	margin: 0 auto;
 	opacity: 0.5;
-	font-size: 30px;
+	font-size: 1rem;
 }
 
 #subnav ul li h2#menu1:before {
@@ -48,12 +47,13 @@ nav#subnav {
 #mylist {
 	top: 0;
 }
-</style>
+
+ </style>
 <nav id="subnav">
 	<ul>
 		<li><h2 id="menu1"></h2>갤러리</li>
 		<li><h2 id="menu2"></h2>자세히</li>
-		<li id="mylist"><h2 id="menu3"></h2>내목록</li>
+		<li id="mylist2"><h2 id="menu3"></h2>내목록</li>
 	</ul>
 </nav>
 <script>

@@ -62,7 +62,6 @@ public class CustomController {
 			return "redirect:/user/login";
 		} else {
 			List<CustomDTO> myList = cuService.findByUser_id(userVO.getUser_id());
-			model.addAttribute("USERVO", userVO);
 			model.addAttribute("MYLIST", myList);
 			model.addAttribute("BODY", "CUSTOM-MYLIST");
 			return "home";
@@ -76,7 +75,6 @@ public class CustomController {
 			return "redirect:/user/login";
 		}
 		CustomDTO customDTO = cuService.findBySeq(menu_seq);
-		//			필요한것 menu_seq, User_id,  comment_seq, comment	
 
 		List<CommentDTO> comList = comService.selectByMenuseq(menu_seq, model);
 		model.addAttribute("COMMENT", comList);
@@ -97,15 +95,12 @@ public class CustomController {
 		Date date = new Date(System.currentTimeMillis());
 		SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
 		String curDate = sd.format(date);
-		log.debug("시간정보 : {}", curDate);
 		commentDTO.setDate(curDate);
 		commentDTO.setUser_id(userId);
 		commentDTO.setMenu_seq(menu_seq);
-		log.debug("commetDTO", commentDTO.toString());
 		int ret = comService.insert(commentDTO);
 		model.addAttribute("SECTION", "COMMENT");
 		if (ret > 0) {
-
 			return "redirect:/";
 		}
 		return "redirect:/";
@@ -136,10 +131,15 @@ public class CustomController {
 	public String customDelete(@RequestParam("menu_seq") Long menu_seq, HttpSession session, Model model)
 			throws Exception {
 		UserVO userVO = (UserVO) session.getAttribute("LOGIN");
+		CustomDTO customDTO = cuService.findBySeq(menu_seq);
+		
 		if (userVO == null) {
 			return "redirect:/user/login";
 		}
-		cuService.delete(menu_seq, model);
+		if(userVO.getUser_id().equals(customDTO.getUser_id())) {
+			log.debug("일치하는 사용자 게시물을 삭제 ", menu_seq);
+			cuService.delete(menu_seq, model);
+		}
 		return "redirect:/custom/mylist";
 	}
 
@@ -191,10 +191,6 @@ public class CustomController {
 		if (userVO == null) {
 			return "redirect:/user/login";
 		}
-		log.debug(userVO.toString());
-		String userId = userVO.getUser_id();
-		log.debug(userId);
-		model.addAttribute("USER", userId);
 		CategoryDTO cateDTO = cuService.findByMenuName(menu_code);
 		model.addAttribute("BODY", "INPUT-SAVE");
 		model.addAttribute("CHOISEMENU", cateDTO);

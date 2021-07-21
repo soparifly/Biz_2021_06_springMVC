@@ -8,61 +8,21 @@
 <c:set
 	var="rootPath"
 	value="${pageContext.request.contextPath}" />
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta
+	http-equiv="X-UA-Compatible"
+	content="IE=edge" />
+<meta
+	name="viewport"
+	content="width=device-width, initial-scale=1.0" />
 <title>HOME : STARBUCKS CUSTOM</title>
-
-<style>
-* {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
-}
-
-body {
-	background-color: whitesmoke;
-}
-
-fieldset {
-	border: 1px solid transparent;
-}
-
-#home_header {
-	background-color: #036635;
-	text-align: center;
-	position: fixed;
-	top: 0;
-	padding: 10px;
-	z-index: 100;
-}
-
-h1 {
-	font-weight: 700;
-	font-size: 8rem;
-	padding-top: 10px;
-	padding-bottom: 20px;
-	color: white;
-	text-shadow: 5px 5px 6px 7px #aaa;
-	height: 20%;
-	font-size: 8rem;
-	color: whitesmoke;
-}
-
-div.images {
-	display: flex;
-	animation: myslide 20s linear infinite;
-}
-
-body {
-	border: 1px solid transparent;
-	padding-top: 50%;
-}
-
-form {
-	border: 1px solid transparent;
-}
-</style>
+	<link href="${rootPath}/static/css/home.css?ver2021-07-21-005" rel="stylesheet" />
 </head>
 <header id="home_header">
-	<h1 id="h1">STARBUCKS CUSTOM</h1>
+	<h1>STARBUCKS CUSTOM<h1>
 	<%@ include file="/WEB-INF/views/include/include_nav.jspf"%>
 </header>
 <body>
@@ -135,3 +95,6 @@ form {
 		  });
 		});
 	</script>
+	</html>
+	
+	

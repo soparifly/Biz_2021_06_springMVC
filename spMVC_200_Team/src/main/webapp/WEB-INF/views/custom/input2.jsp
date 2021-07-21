@@ -8,38 +8,11 @@
 <c:set
 	var="rootPath"
 	value="${pageContext.request.contextPath}" />
-<style>
-#ch2 {
-	text-align: center;
-	margin: 5px auto;
-	padding: 0px auto;
-	height: 100%;
-}
-
-#bs2tr {
-	list-style: none;
-	text-align: center;
-}
-
-td {
-	font-size: 60px;
-	padding: 30px;
-	border: 1px dotted #aaa;
-	border-radius: 10px;
-}
-
-td:hover {
-	cursor: pointer;
-	outline: 1px dotted #aaa;
-	transition: 0.3s;
-	background-color: #aaa;
-}
-</style>
 <fieldset>
 	<form
 		id="bs2form"
 		method="GET">
-		<table id="ch2">
+		<table id="input2">
 			<c:choose>
 				<c:when test="${empty KINDS}">
 					<li>데이터 없음</li>
@@ -60,7 +33,7 @@ td:hover {
 	</form>
 </fieldset>
 <script>
-let base1 = document.querySelector("table#ch2")
+let base1 = document.querySelector("table#input2")
 if(base1){
 	base1.addEventListener("click",(e)=>{
 			let td = e.target

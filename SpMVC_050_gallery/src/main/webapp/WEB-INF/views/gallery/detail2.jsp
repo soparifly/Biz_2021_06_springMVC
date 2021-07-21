@@ -6,115 +6,11 @@
 	uri="http://java.sun.com/jsp/jstl/core"
 	prefix="c"%>
 <c:set
-	var="rootPath"
+	var="rootath"
 	value="${pageContext.request.contextPath}" />
-<style>
-div#gallery_box {
-	width: 90%;
-	margin: 10px auto;
-	border: 1px solid #aaa;
-	display: flex;
-}
+<c:url value="/static/css/detail.css" var="detail_css"/>
+<link href="${detail_css}" rel="stylesheet"/>
 
-div#gallery_box img {
-	margin: 2px;
-	height: 100%;
-}
-
-div#gallery_files {
-	width: 90%;
-	display: flex;
-	flex-wrap: wrap;
-	margin: 10px auto;
-	border: 2px solid green;
-}
-
-div#gallery_file {
-	margins: 2px;
-	width: 100px;
-}
-
-div#gallery_box div:first-of-type {
-	flex: 1;
-	align-items: center;
-	padding: 100px;
-}
-
-div#gallery_bx div:last-of-type {
-	flex: 3;
-}
-
-div#gallery_files img {
-	display: flex;
-	flex-wrap: wrap;
-}
-
-div#gallery_files div.gallery_file {
-	height: 200px;
-	width: 200px;
-	display: flex;
-	padding: 5px;
-	overflow: hidden;
-	position:relative;
-}
-/* after 가상태그 */
-div.gallery_file:after {
-	content: '';
-	position: absolute;
-	left:0;
-	top:0;
-	bottom:0;
-	right:0;
-	background-color: transparent;
-	color: transparent;
-	z-index: 10;
-	/* box내의 text의 그려지는 높이 box의 높이와 같게 
-	만들면 거기에있는 텍스트가 박스의 세로방향으로 가운데 정렬이된다  */
-	/* 그림안에 가운데 text를 넣는방법 */
-	line-height: 200px;
-	text-align:center;
-		
-	transition:1s;
-}
-div.gallery_file:hover:after{
-	content:'\f2ed';
-	font-size : 30px;
-	font-family:"Font Awesome 5 Free";
-	color:white;
-	background-color: rgba(0,0,0,0.5);
-	vertical-align: middle;
-	cursor:pointer;
-
-}
-div#gallery_button_box {
-	width: 90%;
-	border: 1px solid blue;
-	text-align: center;
-}
-
-div#gallery_button_box button {
-	dispaly: inline-block;
-	padding: 12px 20px;
-	outline: 0;
-	border: 0;
-	border-radius: 10px;
-}
-
-div#gallery_button_box button:hover {
-	box-shadow: 2px 2px 2px #333;
-	cursor: pointer;
-}
-
-div#gallery_button_box button:nth-last-of-type(1) {
-	background-color: blue;
-	color: white;
-}
-
-div#gallery_button_box button:nth-last-of-type(2) {
-	background-color: yellow;
-	color: black;
-}
-</style>
 <div id="galley_box">
 	<c:if test="${empty GALLERY.g_image}">
 		<img
