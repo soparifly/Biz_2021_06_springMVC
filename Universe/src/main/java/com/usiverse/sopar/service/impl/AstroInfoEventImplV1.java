@@ -16,7 +16,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
-import com.usiverce.sopar.config.AstroSecret;
+import com.usiverce.sopar.config.AstroSecret_sample;
 
 @Service("astroInfoEventImplV1")
 public class AstroInfoEventImplV1 {
@@ -30,11 +30,11 @@ public class AstroInfoEventImplV1 {
 
 		//		api 요청 서비스의 URL을 받아오기위해 주소 뷸드
 		StringBuilder urlBuilder = new StringBuilder(
-				AstroSecret.astro_event_url
+				AstroSecret_sample.astro_event_url
 				); /*URL*/
 		//		승인된 API 서비스 키를 입력하여 서버에 접속 원하는 데이터를 가져온다
 		urlBuilder.append("?" + URLEncoder.encode("ServiceKey", "UTF-8")
-				+ AstroSecret.astro_event_service_key); /*Service Key*/
+				+ AstroSecret_sample.astro_event_service_key); /*Service Key*/
 		//		요청연도
 		urlBuilder.append("&" + URLEncoder.encode("solYear", "UTF-8") + "=" + URLEncoder.encode("2019", "UTF-8")); /*연*/
 		//		요청월

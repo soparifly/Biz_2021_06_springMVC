@@ -10,7 +10,7 @@ import java.net.URLEncoder;
 
 import org.springframework.stereotype.Service;
 
-import com.usiverce.sopar.config.AstroSecret;
+import com.usiverce.sopar.config.AstroSecret_sample;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -37,7 +37,7 @@ public class AstroInfoEventImplV2 {
 
 			StringBuilder queryURL = new StringBuilder();
 			
-			queryURL.append(AstroSecret.astro_event_url);
+			queryURL.append(AstroSecret_sample.astro_event_url);
 
 			
 			String queryString = String.format("&solYear=%s", solYear);
@@ -63,7 +63,7 @@ public class AstroInfoEventImplV2 {
 			httpConn.setRequestMethod("GET");
 			
 			httpConn.setRequestProperty(queryURL, queryURL);
-			httpConn.setRequestProperty("ServiceKey", AstroSecret.astro_event_service_key);
+			httpConn.setRequestProperty("ServiceKey", AstroSecret_sample.astro_event_service_key);
 			
 			httpConn.setRequestProperty("Content-type", "application/json");
 			
