@@ -150,3 +150,6 @@ RemoteSystemsTempFiles/
 
 #naver secret
 NaverSecret.*
+
+#Astro Team secret
+AstroSecret.*
