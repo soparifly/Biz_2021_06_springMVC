@@ -143,3 +143,6 @@ RemoteSystemsTempFiles/
 
 # naver secret
 NaverSecret.*
+
+# Astro secret
+AstroSecret.*
