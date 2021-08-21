@@ -1,4 +1,4 @@
-package com.usiverse.sopar.model;
+package com.universe.sopar.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

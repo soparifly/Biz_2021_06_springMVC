@@ -1,4 +1,4 @@
-package com.usiverse.sopar.service.impl;
+package com.universe.sopar.service.impl;
 
 import java.io.BufferedReader;
 import java.io.FileOutputStream;
@@ -11,15 +11,18 @@ import java.net.URLEncoder;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 
-import com.usiverce.sopar.config.AstroSecret_sample;
+import com.universe.sopar.config.AstroSecret_sample;
+import com.universe.sopar.service.AstroService;
 
-@Service("astroInfoEventImplV1")
-public class AstroInfoEventImplV1 {
+@Service("astroServiceV1")
+public class AstroInfoEventImplV1 implements AstroService {
 
 	
 		
@@ -104,9 +107,5 @@ public class AstroInfoEventImplV1 {
 		}
 
 	}
-	/*
-	 * 일단 유튜브에 설명하는 다른 공공 api 사용방식을 최대한 활용해서 우리가 사용하는 api 방식에 적용해서 가져왔다
-	 * 하지만 우리가 사용하는 spring 하고는 기능을 사용하는데 차이가 있는거같으므로 
-	 * ...쬬..조..(쭈글) 한테 물어봐서 Spring 형식으로 바꾸는방법 의논해보고 최대한 spring 으로 하여금 보내주는 방식으로 했으면 좋겠다고 생각했다 
-	 */
+
 }

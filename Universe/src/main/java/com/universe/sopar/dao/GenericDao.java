@@ -1,5 +1,5 @@
 
-package com.usiverse.sopar.dao;
+package com.universe.sopar.dao;
 
 import java.util.List;
 import java.util.Map;

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.universe.sopar.dao.ext.GalleryDao">
+
+	<select id="selectAll" resultType="GalleryDTO">
+		SELECT * FROM tbl_gallery
+		ORDER BY g_date DESC, g_time DESC
+	</select>
+	<select id="countAll" resultType="Integer">
+		SELECT COUNT(*) FROM
+		tbl_gallery
+	</select>
+	<select id="findById" resultType="GalleryDTO">
+		SELECT * FROM tbl_gallery
+		WHERE
+		g_seq = #{g_seq}
+	</select>
+	<select id="findBySearch" resultType="GalleryDTO">
+		SELECT * FROM tbl_gallery
+		<if test="text != 'null' and text != 'NONE'">
+			<if test="column == 'g_title'">
+				WHERE g_title LIKE CONCAT('%',#{text},'%')
+			</if>
+			<if test="column == 'g_writer'">
+				WHERE g_writer LIKE CONCAT('%',#{text},'%')
+			</if>
+			<if test="column == 'g_content'">
+				WHERE g_content LIKE CONCAT('%',#{text},'%')
+			</if>
+		</if>
+	</select>
+	<resultMap type="GalleryDTO" id="galleryDTOResultMap">
+		<id property="g_seq" column="g_seq" />
+		<result column="g_writer" property="g_writer" />
+		<result column="g_date" property="g_date" />
+		<result column="g_time" property="g_time" />
+		<result column="g_content" property="g_content" />
+		<result column="g_image" property="g_image" />
+		<collection property="filesList" ofType="FileDTO">
+			<id property="file_seq" column="f_seq" />
+			<result column="f_originalName" property="file_originalName" />
+			<result column="f_upName" property="file_upName" />
+		</collection>
+	</resultMap>
+
+	<sql id="selectGalleryAndFiles">
+		SELECT
+		G.g_seq AS g_seq,
+		G.g_writer AS g_writer,
+		G.g_date AS
+		g_date, G.g_time AS g_time,
+		G.g_title AS g_title,
+		G.g_content AS
+		g_content,
+		G.g_image AS g_image,
+		F.file_seq AS f_seq,
+		F.file_originalName AS
+		f_originalName,
+		F.file_upName AS f_upName
+		FROM tbl_gallery G
+		LEFT JOIN
+		tbl_files F
+		ON G.g_seq = F.file_gseq
+		WHERE G.g_seq = #{g_seq}
+	</sql>
+	<select id="findByIdGalleryFilesResultMap"
+		resultMap="galleryDTOResultMap">
+		<include refid="selectGalleryAndFiles">
+			<property name="g_seq" value="#{g_seq}" />
+		</include>
+	</select>
+
+	<select id="findByIdGalleryFiles" resultType="GalleryFilesDTO">
+		<include refid="selectGalleryAndFiles">
+			<property name="g_seq" value="#{g_seq}" />
+		</include>
+	</select>
+	<insert id="insert" parameterType="GalleryDTO">
+		INSERT INTO tbl_gallery(
+		g_writer,
+		g_date,
+		g_time,
+		g_title,
+		g_content,
+		g_image
+		) VALUES (
+		#{g_writer},
+		#{g_date},
+		#{g_time},
+		#{g_title},
+		#{g_content},
+		#{g_image}
+		)
+		<selectKey keyProperty="g_seq" order="AFTER"
+			resultType="Long">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+
+	<update id="update"></update>
+	<delete id="delete">
+		DELETE FROM tbl_gallery
+		WHERE g_seq = #{g_seq}
+	</delete>
+	<update id="create_table">
+		CREATE TABLE IF NOT EXISTS tbl_gallery (
+		g_seq BIGINT
+		AUTO_INCREMENT PRIMARY
+		KEY,
+		g_writer VARCHAR(125) NOT NULL ,
+		g_date
+		VARCHAR(10) NOT NULL ,
+		g_time VARCHAR(10) NOT NULL ,
+		g_title
+		VARCHAR(50)
+		NOT NULL,
+		g_content
+		VARCHAR(1000) NOT NULL,
+		g_image
+		VARCHAR(256)
+		)
+	</update>
+</mapper>

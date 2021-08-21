@@ -1,4 +1,4 @@
-package com.usiverse.sopar.service.impl;
+package com.universe.sopar.service.impl;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -10,12 +10,12 @@ import java.net.URLEncoder;
 
 import org.springframework.stereotype.Service;
 
-import com.usiverce.sopar.config.AstroSecret_sample;
+import com.universe.sopar.config.AstroSecret_sample;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@Service("astroInfoEventImplV2")
+@Service
 public class AstroInfoEventImplV2 {
 
 	
@@ -90,12 +90,8 @@ public class AstroInfoEventImplV2 {
 				}
 				sBuffer.append(reader);
 				return sBuffer.toString();
-				//여기까지 08/13 
-			}
-			
-			
-			
-			
+				}
+					
 			return queryURL;
 			
 			

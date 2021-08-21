@@ -1,4 +1,4 @@
-package com.usiverce.sopar.config;
+package com.universe.sopar.config;
 
 public class AstroSecret_sample {
 

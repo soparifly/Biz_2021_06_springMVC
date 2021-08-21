@@ -1,12 +1,13 @@
-package com.usiverse.sopar.service.impl;
+package com.universe.sopar.service.impl;
 
 import java.io.File;
 import java.util.UUID;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.usiverse.sopar.service.FileService;
+import com.universe.sopar.service.FileService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,14 +15,15 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RequiredArgsConstructor
-@Service("fileServiceImplV1")
+@Service("fileServiceV1")
 public class FileServiceImplV1 implements FileService{
 
 	protected final String winPath;
 	protected final String macPath;
 	
 	protected String fileUpPath;
-	
+
+	@Autowired
 	public void getFilePath(String winPath, String macPath) {
 		this.fileUpPath = this.winPath;
 	}
@@ -41,7 +43,7 @@ public class FileServiceImplV1 implements FileService{
 		if(path.exists()) {
 			this.fileUpPath = this.macPath;
 		}
-		
+
 		path = new File(fileUpPath);
 		if(!path.exists()) {
 			path.mkdirs();
@@ -53,7 +55,6 @@ public class FileServiceImplV1 implements FileService{
 		File uploadPathAndFile = new File(fileUpPath, strUUID);
 		file.transferTo(uploadPathAndFile);
 		return strUUID;
-		
 	}
 	public int delete(String imgFileName) {
 		if(imgFileName == null || imgFileName.isEmpty()) {

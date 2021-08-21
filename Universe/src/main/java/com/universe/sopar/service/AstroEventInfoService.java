@@ -1,4 +1,4 @@
-package com.usiverse.sopar.service;
+package com.universe.sopar.service;
 /*
  * 서비스 ID SC-OA-09-05
  * 천문현상 정보제공 서비스
